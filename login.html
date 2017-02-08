@@ -1,0 +1,108 @@
+<!doctype html>
+<html lang="en">
+ <head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <title>ToolShare</title>
+  
+  <!-- You may or not not use jQuery; but, here just to show as example -->
+  <script src="https://code.jquery.com/jquery-2.1.3.js"></script>
+  <script src="https://code.jquery.com/ui/1.11.2/jquery-ui.js"></script> 
+  
+  <!-- you can choose another font-family, and even have as many as you design requires. -->
+  <link href="https://fonts.googleapis.com/css?family=Raleway" rel="stylesheet" type="text/css">
+  <script src="https://www.atlasestateagents.co.uk/javascript/tether.min.js"></script>
+
+  <link rel="stylesheet" href="pure/pure-min.css">
+  <link rel="stylesheet" href="css/icono.min.css">
+
+  <!--
+  <link rel="stylesheet" href="bootstrap/css/bootstrap.min.css">
+  -->
+  
+  <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0-alpha.2/css/bootstrap.min.css"
+        integrity="sha384-y3tfxAZXuh4HwSYylfB+J125MxIs6mR5FOHamPBG064zB+AFeWH94NdvaCBm8qnd"
+        crossorigin="anonymous">
+  
+  <!--
+  <link rel="stylesheet" href="https://cdn.rawgit.com/twbs/bootstrap/v4-dev/dist/css/bootstrap.css"
+        integrity="sha384-XXXXXXXX" crossorigin="anonymous">
+  <script src="https://cdn.rawgit.com/twbs/bootstrap/v4-dev/dist/js/bootstrap.js"
+        integrity="sha384-XXXXXXXX" crossorigin="anonymous"></script>
+        -->
+  <link rel="stylesheet" type="text/css" href="css/style.css">
+  
+  <style>
+    div.welcome {
+      text-align: center;
+      width: 100%;
+      margin-bottom: 20px;
+      border-bottom: 1px solid lightgray;
+    }
+    a.moreLink:hover {
+      color: black;
+      text-decoration: none;
+    }
+    .banner {
+      padding-bottom: 10px;
+    }
+
+    .day {
+      font-weight: bold;
+    }
+
+    .hours ul {
+        list-style-type: none;
+        padding-left: 10px;
+    }
+
+    .contact > h4,
+    .contact > p,
+    .welcomeblock > p {
+      padding-left: 10px;
+    }
+
+  </style>
+
+ </head>
+<body onload="initMenu()">
+
+<nav class="navbar navbar-light bg-faded navbar-fixed-top">
+  <button class="navbar-toggler hidden-sm-up" type="button" data-toggle="collapse" data-target="#collapsingNavbar">
+    &#9776;
+  </button>
+  <span class="hidden-sm-up">Grandmaster Hong's TKD</span>
+  <div class="collapse navbar-toggleable-xs" id="collapsingNavbar">
+
+    <a class="navbar-brand" href="index.html"><img src="img/gearlogo.png" height=100></a>
+
+    <br><br>
+    <br class="hidden-sm-up"><br class="hidden-sm-up"><br class="hidden-sm-up">
+    
+
+    <ul class="toStackOrNotToStack thatIsTheQuestion nav nav-pills fillUpNavbar">
+    </ul>
+  </div>
+</nav>
+
+<form method="post"
+        onsubmit="logInAsNewUser();">
+    <label for="username">Username: </label>
+    <input type="text" name="username" id="username"><br>
+    <label for="password">Password: </label>
+    <input type="text" name="password" id="password"><br>
+    <input type="submit" value="Log in" id="submit">
+  </form>
+
+  <script src="https://ajax.googleapis.com/ajax/libs/jquery/2.1.4/jquery.min.js"></script>
+  <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0-alpha.2/js/bootstrap.min.js"
+          integrity="sha384-vZ2WRJMwsjRMW/8U7i6PWi6AlO1L79snBrmgiDpgIWJ82z8eA5lenwvxbMV1PAh7"
+          crossorigin="anonymous"></script>
+
+<script type="text/javascript" src="js/js.cookie.js"></script>
+<script type="text/javascript" src="js/loginout.js"></script>
+<script type="text/javascript" src="js/menu.js"></script>
+
+</body>
+</html>

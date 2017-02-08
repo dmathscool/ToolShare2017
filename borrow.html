@@ -21,7 +21,7 @@
   <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0-alpha.2/css/bootstrap.min.css"
         integrity="sha384-y3tfxAZXuh4HwSYylfB+J125MxIs6mR5FOHamPBG064zB+AFeWH94NdvaCBm8qnd"
         crossorigin="anonymous">
-  
+
   <link rel="stylesheet" type="text/css" href="css/style.css">
   
   <style>
@@ -54,10 +54,22 @@
       padding-left: 10px;
     }
 
+    table {
+      border-collapse: collapse;
+      border: 1px solid black;
+    }
+    table td {
+      border: 1px solid black;
+      padding: 10px;
+    }
+    .toolpic {
+      width: 75px;
+    }
+
   </style>
 
  </head>
-<body onload="initMenu()">
+<body onload="initMenu(); populateToolnameDropdown(); populateTooltypeDropdown(); populateBrandDropdown(); populateConditionDropdown()">
 
 <nav class="navbar navbar-light bg-faded navbar-fixed-top">
   <button class="navbar-toggler hidden-sm-up" type="button" data-toggle="collapse" data-target="#collapsingNavbar">
@@ -70,7 +82,7 @@
 
     <br><br>
     <br class="hidden-sm-up"><br class="hidden-sm-up"><br class="hidden-sm-up">
-    
+
 
     <ul class="toStackOrNotToStack thatIsTheQuestion nav nav-pills fillUpNavbar">
       <!-- to be filled in programmatically -->
@@ -78,46 +90,29 @@
   </div>
 </nav>
 
-    <img src="img/biglogo.png" class="img-fluid m-x-auto d-block hidden-sm-down banner">
+<table>
+  <tr> <td><!--img--></td><td>Tool name</td><td>Tool type</td><td>Brand</td><td>Condition</td> </tr>
+  <tr> <td><img src="img/rando/link.jpg" class="toolpic"></td><td>Hyrulian Toolian</td><td>Wrench</td><td>DeWalt</td><td>Super</td> </tr>
+  <tr> <td><img src="img/rando/marvin.jpg" class="toolpic"></td><td>Q-36 Space Modulator</td><td>Modulator</td><td>Mars Industries</td><td>Amazing</td> </tr>
+  <tr> <td><img src="img/rando/teddy.jpg" class="toolpic"></td><td>Big Stick</td><td>Soft Speaker</td><td>POTUS</td><td>Highly effective</td> </tr>
+  <tr> <td><img src="img/rando/terminator.jpg" class="toolpic"></td><td>Terminator</td><td>Pretty self explanatory</td><td>Skynet</td><td>Will be back</td> </tr>
+  <tr> <td><img src="img/rando/sam.jpg" class="toolpic"></td><td>Yosemite Sam</td><td>Pew pew device</td><td>I'm getting tired of thinking of this stuff</td><td>Prone to misfiring and seriously injuring you</td> </tr>
+  <tr> <td><!--img--></td><td><select class="filtertoolname"></select></td><td><select class="filtertooltype"></select></td><td><select class="filterbrand"></select></td><td><select class="filtercondition"></select></td> </tr>
+</table>
+<form method="post"
+        onsubmit="filterStuff()">
+    <input type="submit" value="Filter results" id="submit">
+  </form>
 
-
-<div class="container">
-<div class="row">
-
-  <div class="indexcol col-xs-12 col-sm-12 col-md-4 col-lg-6">
-
-    <!-- greeting -->
-    <div class="textblock welcomeblock">
-    <h3 class="colorheader">Welcome!</h3>
-      <p>Our tools are awesome.</p>
-      <p>You should borrow them!</p>
-      <p>Natch.</p>
-    </div> <!-- textblock welcome -->
-
-  </div> <!-- col -->
-
-  <div class="indexcol col-xs-12 col-sm-12 col-md-4 col-lg-6">
-
-    <!-- greeting -->
-    <div class="textblock notesblock">
-    <h3 class="colorheader">Notes</h3>
-      <ul>
-        <li>Borrow shows up in both logged in and logged out modes. My intent is for the logged-out version of borrow to let the user search
-            and have the borrow buttons grayed out with a note that you need to create an account to use the feature.</li>
-
-        <li>Create account doesn't actually create anything right now. It just logs in as the user in the username field</li>
-
-        <li>Log in doesn't check the password or that the user exists. It simply takes whatever is in the username field and "logs in" as that name</li>
-
-        <li>Log out actually works as it should in the final product: delete the user cookie and kick back to the main page</li>
-
-      </ul>
-    </div> <!-- textblock welcome -->
-
-  </div> <!-- col -->
-</div> <!-- row -->
-</div> <!-- container -->
-
+  <div>
+    <b>Notes:</b><br>
+    Dropdown boxes are programmatically filled in. On page load, the tools data will be pulled from the database and the dropdowns<br>
+    populated with the relevant values. I don't think we need to get too fancy with our filtering here. Let the user pick one or zero items from each<br>
+    dropdown box and hit filter to restrict the available choices.<br>
+    <br>
+    There will also be a column for request tool buttons. These buttons will be grayed out when not logged in and a note will be displayed to create an account<br>
+    or log in to borrow tools.
+    </div>
 
   <script src="https://ajax.googleapis.com/ajax/libs/jquery/2.1.4/jquery.min.js"></script>
   <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0-alpha.2/js/bootstrap.min.js"
@@ -127,6 +122,7 @@
 <script type="text/javascript" src="js/js.cookie.js"></script>
 <script type="text/javascript" src="js/loginout.js"></script>
 <script type="text/javascript" src="js/menu.js"></script>
+<script type="text/javascript" src="js/filters.js"></script>
 
 </body>
 </html>

@@ -1,0 +1,118 @@
+<!doctype html>
+<html lang="en">
+ <head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <title>ToolShare</title>
+  
+  <!-- jQuery -->
+  <script src="https://code.jquery.com/jquery-2.1.3.js"></script>
+  <script src="https://code.jquery.com/ui/1.11.2/jquery-ui.js"></script> 
+  
+  <!-- fonts -->
+  <link href="https://fonts.googleapis.com/css?family=Raleway" rel="stylesheet" type="text/css">
+  <script src="https://www.atlasestateagents.co.uk/javascript/tether.min.js"></script>
+
+  <link rel="stylesheet" href="pure/pure-min.css">
+  <link rel="stylesheet" href="css/icono.min.css">
+  
+  <!-- page layout library -->
+  <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0-alpha.2/css/bootstrap.min.css"
+        integrity="sha384-y3tfxAZXuh4HwSYylfB+J125MxIs6mR5FOHamPBG064zB+AFeWH94NdvaCBm8qnd"
+        crossorigin="anonymous">
+
+  <link rel="stylesheet" type="text/css" href="css/style.css">
+  
+  <style>
+    div.welcome {
+      text-align: center;
+      width: 100%;
+      margin-bottom: 20px;
+      border-bottom: 1px solid lightgray;
+    }
+    a.moreLink:hover {
+      color: black;
+      text-decoration: none;
+    }
+    .banner {
+      padding-bottom: 10px;
+    }
+
+    .day {
+      font-weight: bold;
+    }
+
+    .hours ul {
+        list-style-type: none;
+        padding-left: 10px;
+    }
+
+    .contact > h4,
+    .contact > p,
+    .welcomeblock > p {
+      padding-left: 10px;
+    }
+
+    table {
+      border-collapse: collapse;
+      border: 1px solid black;
+    }
+    table td {
+      border: 1px solid black;
+      padding: 10px;
+    }
+    .toolpic {
+      width: 75px;
+    }
+
+  </style>
+
+ </head>
+<body onload="initMenu()">
+
+<nav class="navbar navbar-light bg-faded navbar-fixed-top">
+  <button class="navbar-toggler hidden-sm-up" type="button" data-toggle="collapse" data-target="#collapsingNavbar">
+    &#9776;
+  </button>
+  <span class="hidden-sm-up">Grandmaster Hong's TKD</span>
+  <div class="collapse navbar-toggleable-xs" id="collapsingNavbar">
+
+    <a class="navbar-brand" href="index.html"><img src="img/gearlogo.png" height=100></a>
+
+    <br><br>
+    <br class="hidden-sm-up"><br class="hidden-sm-up"><br class="hidden-sm-up">
+
+
+    <ul class="toStackOrNotToStack thatIsTheQuestion nav nav-pills fillUpNavbar">
+      <!-- to be filled in programmatically -->
+    </ul>
+  </div>
+</nav>
+
+<table>
+  <tr> <td><!--img--></td><td>Tool name</td><td>Tool type</td><td>Brand</td><td>Condition</td> </tr>
+  <tr> <td><img src="img/rando/link.jpg" class="toolpic"></td><td>Hyrulian Toolian</td><td>Wrench</td><td>DeWalt</td><td>Super</td> </tr>
+  <tr> <td><img src="img/rando/marvin.jpg" class="toolpic"></td><td>Q-36 Space Modulator</td><td>Modulator</td><td>Mars Industries</td><td>Amazing</td> </tr>
+  <tr> <td><img src="img/rando/teddy.jpg" class="toolpic"></td><td>Big Stick</td><td>Soft Speaker</td><td>POTUS</td><td>Highly effective</td> </tr>
+  <tr> <td><img src="img/rando/terminator.jpg" class="toolpic"></td><td>Terminator</td><td>Pretty self explanatory</td><td>Skynet</td><td>Will be back</td> </tr>
+  <tr> <td><img src="img/rando/sam.jpg" class="toolpic"></td><td>Yosemite Sam</td><td>Pew pew device</td><td>I'm getting tired of thinking of this stuff</td><td>Prone to misfiring and seriously injuring you</td> </tr>
+  <tr> <td><!--img--></td><td><input type="text" name="toolname"></td><td><input type="text" name="tooltype"></td><td><input type="text" name="toolbrand"></td><td><input type="text" name="toolcondition"></td> </tr>
+</table>
+<form method="post"
+        onsubmit="filterStuff()">
+    <input type="submit" value="Add tool" id="submit">
+  </form>
+
+  <script src="https://ajax.googleapis.com/ajax/libs/jquery/2.1.4/jquery.min.js"></script>
+  <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0-alpha.2/js/bootstrap.min.js"
+          integrity="sha384-vZ2WRJMwsjRMW/8U7i6PWi6AlO1L79snBrmgiDpgIWJ82z8eA5lenwvxbMV1PAh7"
+          crossorigin="anonymous"></script>
+
+<script type="text/javascript" src="js/js.cookie.js"></script>
+<script type="text/javascript" src="js/loginout.js"></script>
+<script type="text/javascript" src="js/menu.js"></script>
+<script type="text/javascript" src="js/filters.js"></script>
+
+</body>
+</html>

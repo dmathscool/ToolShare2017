@@ -111,6 +111,11 @@
 
         <li>Log out actually works as it should in the final product: delete the user cookie and kick back to the main page</li>
 
+        <li>Any user, logged in or not, could type in the URL for any page and go there even if it doesn't make sense for a user of that type to go there.
+          For example, a person who isn't logged in shouldn't see the transactions page. The best way to handle that is probably to check for login at page load
+          and send you to the login page instead if you aren't logged in.
+        </li>
+
       </ul>
     </div> <!-- textblock welcome -->
 

@@ -1,0 +1,164 @@
+<!doctype html>
+<html lang="en">
+ <head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <title>ToolShare</title>
+  
+  <!-- jQuery -->
+  <script src="https://code.jquery.com/jquery-2.1.3.js"></script>
+  <script src="https://code.jquery.com/ui/1.11.2/jquery-ui.js"></script> 
+  
+  <!-- fonts -->
+  <link href="https://fonts.googleapis.com/css?family=Raleway" rel="stylesheet" type="text/css">
+  <script src="https://www.atlasestateagents.co.uk/javascript/tether.min.js"></script>
+
+  <link rel="stylesheet" href="pure/pure-min.css">
+  <link rel="stylesheet" href="css/icono.min.css">
+  
+  <!-- page layout library -->
+  <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0-alpha.2/css/bootstrap.min.css"
+        integrity="sha384-y3tfxAZXuh4HwSYylfB+J125MxIs6mR5FOHamPBG064zB+AFeWH94NdvaCBm8qnd"
+        crossorigin="anonymous">
+
+  <link rel="stylesheet" type="text/css" href="css/style.css">
+  
+  <style>
+    .tableheader {
+      text-align: center;
+    }
+
+    table {
+      margin: 25px;
+      margin-bottom: 40px;
+    }
+
+    div.welcome {
+      text-align: center;
+      width: 100%;
+      margin-bottom: 20px;
+      border-bottom: 1px solid lightgray;
+    }
+    a.moreLink:hover {
+      color: black;
+      text-decoration: none;
+    }
+    .banner {
+      padding-bottom: 10px;
+    }
+
+    .day {
+      font-weight: bold;
+    }
+
+    .hours ul {
+        list-style-type: none;
+        padding-left: 10px;
+    }
+
+    .contact > h4,
+    .contact > p,
+    .welcomeblock > p {
+      padding-left: 10px;
+    }
+
+    table {
+      border-collapse: collapse;
+      border: 1px solid black;
+    }
+    table td {
+      border: 1px solid black;
+      padding: 10px;
+    }
+    .toolpic {
+      width: 75px;
+    }
+
+  </style>
+
+ </head>
+<body onload="initMenu()">
+
+<nav class="navbar navbar-light bg-faded navbar-fixed-top">
+  <button class="navbar-toggler hidden-sm-up" type="button" data-toggle="collapse" data-target="#collapsingNavbar">
+    &#9776;
+  </button>
+  <span class="hidden-sm-up">Grandmaster Hong's TKD</span>
+  <div class="collapse navbar-toggleable-xs" id="collapsingNavbar">
+
+    <a class="navbar-brand" href="index.html"><img src="img/gearlogo.png" height=100></a>
+
+    <br><br>
+    <br class="hidden-sm-up"><br class="hidden-sm-up"><br class="hidden-sm-up">
+
+
+    <ul class="toStackOrNotToStack thatIsTheQuestion nav nav-pills fillUpNavbar">
+      <!-- to be filled in programmatically -->
+    </ul>
+  </div>
+</nav>
+
+<table>
+  <tr> <td class="tableheader" colspan=7>Your tools</td> </tr>
+  <tr> <td><!--img--></td><td>Tool name</td><td>Tool type</td><td>Brand</td><td>Condition</td><td>Status</td><td><!--button--></td> </tr>
+  <tr> <td><img src="img/rando/link.jpg" class="toolpic"></td><td>Hyrulian Toolian</td><td>Wrench</td><td>DeWalt</td><td>Super</td><td>Requested</td>
+            <td><input onclick="editTool()" type="submit" value="Next Step" id="submit"></td> </tr>
+
+  <tr> <td><img src="img/rando/marvin.jpg" class="toolpic"></td><td>Q-36 Space Modulator</td><td>Modulator</td><td>Mars Industries</td><td>Amazing</td><td>Accepted</td>
+            <td><input onclick="editTool()" type="submit" value="Next Step" id="submit"></td> </tr>
+
+  <tr> <td><img src="img/rando/teddy.jpg" class="toolpic"></td><td>Big Stick</td><td>Soft Speaker</td><td>POTUS</td><td>Highly effective</td><td>On loan</td>
+            <td><input onclick="editTool()" type="submit" value="Next Step" id="submit"></td> </tr>
+            
+  <tr> <td><img src="img/rando/terminator.jpg" class="toolpic"></td><td>Terminator</td><td>Pretty self explanatory</td><td>Skynet</td><td>Will be back</td><td>Returned</td>
+            <td><input onclick="editTool()" type="submit" value="Next Step" id="submit"></td> </tr>  
+</table>
+
+<table>
+  <tr> <td class="tableheader" colspan=7>Their tools</td> </tr>
+  <tr> <td><!--img--></td><td>Tool name</td><td>Tool type</td><td>Brand</td><td>Condition</td><td>Status</td><td><!--button--></td> </tr>
+  <tr> <td><img src="img/rando/link.jpg" class="toolpic"></td><td>Hyrulian Toolian</td><td>Wrench</td><td>DeWalt</td><td>Super</td><td>Requested</td>
+            <td><input onclick="editTool()" type="submit" value="Next Step" id="submit"></td> </tr>
+
+  <tr> <td><img src="img/rando/marvin.jpg" class="toolpic"></td><td>Q-36 Space Modulator</td><td>Modulator</td><td>Mars Industries</td><td>Amazing</td><td>Accepted</td>
+            <td><input onclick="editTool()" type="submit" value="Next Step" id="submit"></td> </tr>
+
+  <tr> <td><img src="img/rando/teddy.jpg" class="toolpic"></td><td>Big Stick</td><td>Soft Speaker</td><td>POTUS</td><td>Highly effective</td><td>On loan</td>
+            <td><input onclick="editTool()" type="submit" value="Next Step" id="submit"></td> </tr>
+
+  <tr> <td><img src="img/rando/terminator.jpg" class="toolpic"></td><td>Terminator</td><td>Pretty self explanatory</td><td>Skynet</td><td>Will be back</td><td>Returned</td>
+            <td><input onclick="editTool()" type="submit" value="Next Step" id="submit"></td> </tr>  
+</table>
+
+<div>
+  <b>Notes:</b><br>
+  I have implemented separate tables for your owned items and items you are borrowing. Otherwise we have to come up with some way to indicate, for example,<br>
+  whether a tool is on loan to you or you have loaned it out.<br><br>
+
+  "Next step" on buttons should automatically show something more descriptive based on the item status.<br>
+  Suggesting items with status Requested show "Accept" on the button, Accepted shows "Deliver", On loan shows "Reclaim", Returned shows "Rate user"<br>
+  Not all items will necessarily need a button. Most of the ones on "their tools" probably won't. The tool owner will typically drive the workflow.<br>
+  The one exception I can think of is rating the loaning user after you have returned their item.<br><br>
+  
+  When the loaning user accepts the request, there are probably two simplest ways to handle the hand off:<br>
+  1) system automatically emails both users a notice that says, for example:<br>
+  "tool X is ready to trade. owner: Bob Jones (bjones@gmail.com). borrower: Susan Smith (ssmith@yahoo.com). coordinate, hand off, and mark the tool loaned"<br>
+  2) a notes field in the transaction list shows e-mail address of the other user with the intent that the users just e-mail each other to coordinate handoff.<br><br>
+
+  We also need an expiration date column<br>
+</div>
+
+  <script src="https://ajax.googleapis.com/ajax/libs/jquery/2.1.4/jquery.min.js"></script>
+  <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0-alpha.2/js/bootstrap.min.js"
+          integrity="sha384-vZ2WRJMwsjRMW/8U7i6PWi6AlO1L79snBrmgiDpgIWJ82z8eA5lenwvxbMV1PAh7"
+          crossorigin="anonymous"></script>
+
+<script type="text/javascript" src="js/js.cookie.js"></script>
+<script type="text/javascript" src="js/loginout.js"></script>
+<script type="text/javascript" src="js/menu.js"></script>
+<script type="text/javascript" src="js/filters.js"></script>
+<script type="text/javascript" src="js/tool.js"></script>
+
+</body>
+</html>

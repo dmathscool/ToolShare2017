@@ -91,18 +91,25 @@
 </nav>
 
 <table>
-  <tr> <td><!--img--></td><td>Tool name</td><td>Tool type</td><td>Brand</td><td>Condition</td> </tr>
-  <tr> <td><img src="img/rando/link.jpg" class="toolpic"></td><td>Hyrulian Toolian</td><td>Wrench</td><td>DeWalt</td><td>Super</td> </tr>
-  <tr> <td><img src="img/rando/marvin.jpg" class="toolpic"></td><td>Q-36 Space Modulator</td><td>Modulator</td><td>Mars Industries</td><td>Amazing</td> </tr>
-  <tr> <td><img src="img/rando/teddy.jpg" class="toolpic"></td><td>Big Stick</td><td>Soft Speaker</td><td>POTUS</td><td>Highly effective</td> </tr>
-  <tr> <td><img src="img/rando/terminator.jpg" class="toolpic"></td><td>Terminator</td><td>Pretty self explanatory</td><td>Skynet</td><td>Will be back</td> </tr>
-  <tr> <td><img src="img/rando/sam.jpg" class="toolpic"></td><td>Yosemite Sam</td><td>Pew pew device</td><td>I'm getting tired of thinking of this stuff</td><td>Prone to misfiring and seriously injuring you</td> </tr>
-  <tr> <td><!--img--></td><td><input type="text" name="toolname"></td><td><input type="text" name="tooltype"></td><td><input type="text" name="toolbrand"></td><td><input type="text" name="toolcondition"></td> </tr>
+  <tr> <td><!--img--></td><td>Tool name</td><td>Tool type</td><td>Brand</td><td>Condition</td><td>Status</td><td><!--button--></td> </tr>
+  <tr> <td><img src="img/rando/link.jpg" class="toolpic"></td><td>Hyrulian Toolian</td><td>Wrench</td><td>DeWalt</td><td>Super</td><td>Available</td>
+            <td><input onclick="editTool()" type="submit" value="Edit" id="submit"></td> </tr>
+
+  <tr> <td><img src="img/rando/marvin.jpg" class="toolpic"></td><td>Q-36 Space Modulator</td><td>Modulator</td><td>Mars Industries</td><td>Amazing</td><td>Requested</td>
+            <td><input onclick="editTool()" type="submit" value="Edit" id="submit"></td> </tr>
+
+  <tr> <td><img src="img/rando/teddy.jpg" class="toolpic"></td><td>Big Stick</td><td>Soft Speaker</td><td>POTUS</td><td>Highly effective</td><td>Accepted</td>
+            <td><input onclick="editTool()" type="submit" value="Edit" id="submit"></td> </tr>
+            
+  <tr> <td><img src="img/rando/terminator.jpg" class="toolpic"></td><td>Terminator</td><td>Pretty self explanatory</td><td>Skynet</td><td>Will be back</td><td>On loan</td>
+            <td><input onclick="editTool()" type="submit" value="Edit" id="submit"></td> </tr>
+            
+  <tr> <td><img src="img/rando/sam.jpg" class="toolpic"></td><td>Yosemite Sam</td><td>Pew pew device</td><td>I'm getting tired of thinking of this stuff</td><td>Prone to misfiring and seriously injuring you</td><td>Available</td>
+            <td><input onclick="editTool()" type="submit" value="Edit" id="submit"></td> </tr>
+            
+  <tr> <td><!--img--></td><td><input type="text" name="toolname"></td><td><input type="text" name="tooltype"></td><td><input type="text" name="toolbrand"></td><td><input type="text" name="toolcondition"></td><td><!--status--></td>
+            <td><input onclick="createTool()" type="submit" value="Add" id="submit"></td> </tr>
 </table>
-<form method="post"
-        onsubmit="filterStuff()">
-    <input type="submit" value="Add tool" id="submit">
-  </form>
 
   <script src="https://ajax.googleapis.com/ajax/libs/jquery/2.1.4/jquery.min.js"></script>
   <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0-alpha.2/js/bootstrap.min.js"
@@ -113,6 +120,7 @@
 <script type="text/javascript" src="js/loginout.js"></script>
 <script type="text/javascript" src="js/menu.js"></script>
 <script type="text/javascript" src="js/filters.js"></script>
+<script type="text/javascript" src="js/tool.js"></script>
 
 </body>
 </html>

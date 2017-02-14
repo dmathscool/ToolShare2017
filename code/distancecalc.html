@@ -1,0 +1,93 @@
+<!DOCTYPE html>
+<html>
+<!--
+Distance calculation between two points, source and destination
+Adapted from http://jsbin.com/amodAJuQ/1/edit)
+
+Google maps api key for ToolShare is AIzaSyCaP-3VTcPh0x6rKEmD0g8kSVGKhPyRXlc
+I have not figured out how to use this yet (DMM)
+-->
+<meta name="distance" content="noindex">
+  <head>
+    <title>Distance Calculator</title>
+    <script src="https://maps.googleapis.com/maps/api/js?v=3.exp&sensor=false"></script>
+    <style>
+      html, body {
+        height: 100%;
+        margin: 0;
+        padding: 0;
+      }
+
+      #content-pane {
+        float:left;
+        width:100%;
+        padding-left: 2%;
+      }
+      #outputDiv {
+        font-size: 11px;
+      }
+    </style>
+    <script>
+
+var origin;
+var destination;
+
+function calculateDistances() {
+  origin = document.getElementById('source').value;
+  destination = document.getElementById('dest').value;
+  var service = new google.maps.DistanceMatrixService();
+  service.getDistanceMatrix(
+    {
+      origins: [origin],
+      destinations: [destination],
+      travelMode: google.maps.TravelMode.DRIVING,
+      unitSystem: google.maps.UnitSystem.IMPERIAL,
+      avoidHighways: false,
+      avoidTolls: false
+    }, calcDistance);
+}
+
+function calcDistance(response, status) {
+  if (status != google.maps.DistanceMatrixStatus.OK) {
+    alert('Error was: ' + status);
+  } else {
+    var origins = response.originAddresses;
+    var destinations = response.destinationAddresses;
+    for (var i = 0; i < origins.length; i++) {
+      var results = response.rows[i].elements;
+      for (var j = 0; j < results.length; j++) {
+        outputDiv.innerHTML = origins[i] + ' to ' + destinations[j]
+            + ': ' + results[j].distance.text + '<br>';
+      }
+    }
+  }
+}
+
+    </script>
+  </head>
+  <body>
+    <div id="content-pane">
+      <div id="inputs">
+	<label>Source</label><input type="text" name="source" id="source" />	
+	<label>Destination</label><input type="text" name="dest" id="dest" />
+        <p><button type="button" onclick="calculateDistances();">Calculate
+          distances</button></p>
+      </div>
+      <div id="outputDiv"></div>
+    </div>  <script src="http://static.jsbin.com/js/render/edit.js?3.41.0"></script>
+<script>jsbinShowEdit && jsbinShowEdit({"static":"http://static.jsbin.com","root":"http://jsbin.com"});</script>
+<script>
+(function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
+  (i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
+  m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
+  })(window,document,'script','https://www.google-analytics.com/analytics.js','ga');
+
+ga('create', 'UA-1656750-34', 'auto');
+ga('require', 'linkid', 'linkid.js');
+ga('require', 'displayfeatures');
+ga('send', 'pageview');
+
+</script>
+
+</body>
+</html>

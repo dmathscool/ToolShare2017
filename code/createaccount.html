@@ -5,11 +5,11 @@
   <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
   <meta http-equiv="X-UA-Compatible" content="IE=edge">
   <title>ToolShare</title>
-  
+
   <!-- jQuery -->
   <script src="https://code.jquery.com/jquery-2.1.3.js"></script>
-  <script src="https://code.jquery.com/ui/1.11.2/jquery-ui.js"></script> 
-  
+  <script src="https://code.jquery.com/ui/1.11.2/jquery-ui.js"></script>
+
   <!-- fonts -->
   <link href="https://fonts.googleapis.com/css?family=Raleway" rel="stylesheet" type="text/css">
   <script src="https://www.atlasestateagents.co.uk/javascript/tether.min.js"></script>
@@ -21,9 +21,9 @@
   <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0-alpha.2/css/bootstrap.min.css"
         integrity="sha384-y3tfxAZXuh4HwSYylfB+J125MxIs6mR5FOHamPBG064zB+AFeWH94NdvaCBm8qnd"
         crossorigin="anonymous">
-  
+
   <link rel="stylesheet" type="text/css" href="css/style.css">
-  
+
   <style>
     div.welcome {
       text-align: center;
@@ -70,7 +70,7 @@
 
     <br><br>
     <br class="hidden-sm-up"><br class="hidden-sm-up"><br class="hidden-sm-up">
-    
+
 
     <ul class="toStackOrNotToStack thatIsTheQuestion nav nav-pills fillUpNavbar">
       <!-- to be filled in programmatically -->
@@ -82,9 +82,12 @@
   see webclass hw4-ex6
   form tag should have attribute action="" where action is a link to a PHP script that adds user details to database
   not sure how to do php script and then have it also login and load the page on the client
+onsubmit="logInAsNewUser()"
   -->
   <form method="post"
-        onsubmit="logInAsNewUser()">
+        class="form"
+        action="#"
+        >
     <label for="username">Username: </label>
     <input type="text" name="username" id="username"><br>
     <label for="password">Password: </label>
@@ -93,7 +96,7 @@
     <input type="text" name="zip" id="zip"><br>
     <label for="email">E-mail address: </label>
     <input type="text" name="email" id="email"><br>
-    <input type="submit" value="Create account and log in" id="submit">
+    <input type="button" name="register" id="register" value="Create account and log in">
   </form>
 
   <script src="https://ajax.googleapis.com/ajax/libs/jquery/2.1.4/jquery.min.js"></script>
@@ -104,6 +107,7 @@
 <script type="text/javascript" src="js/js.cookie.js"></script>
 <script type="text/javascript" src="js/loginout.js"></script>
 <script type="text/javascript" src="js/menu.js"></script>
+<script type="text/javascript" src="js/registration.js"></script>
 
 </body>
 </html>

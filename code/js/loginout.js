@@ -23,5 +23,6 @@ function loggedInAs() {
 
 function logInAsNewUser() {
     var name = document.getElementById('username').value;
+
     logIn(name);
-}
+  }

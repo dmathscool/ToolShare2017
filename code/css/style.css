@@ -11,42 +11,6 @@ body {
   padding-top: 20px;
 }
 
-.programimage {
-  width: 100%;
-  margin-bottom: 15px;
-}
-
-.subhead {
-  color: rgb(2, 117, 216);
-}
-
-.tkdcard {
-      background-color: #ADDFFF;
-      border-radius: 3px;
-      border-bottom-right-radius: 15px;
-      box-shadow: 3px 3px 5px grey;
-      padding-bottom: 10px;
-      margin-bottom: 10px;
-      overflow: auto;
-}
-.tkdCardName {
-      font-weight: bold;
-      font-style: italic;
-      font-size: 1.5em;
-      padding: 0px;
-      padding-left: 10px;
-      padding-right: 10px;
-      margin: 0px;
-}
-.tkdCardDesc {
-      padding: 0px;
-      padding-left: 20px;
-      padding-right: 20px;
-      padding-top: 20px;
-      margin: 0px;
-}
-
-
 .textblock {
   background-color: #eeeef1;
   margin-top: 20px;

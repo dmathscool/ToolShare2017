@@ -3,13 +3,6 @@ body {
   padding-top: 130px;
 }
 
-@media screen and (max-width: 543px) {
-    
-    body {
-      padding-top: 60px;
-    }
-}
-
 .colorheader {
   color: rgb(2, 117, 216);
 }
@@ -59,33 +52,4 @@ body {
   margin-top: 20px;
   padding: 10px;
   border-radius: 10px;
-}
-
-@media screen and (max-width: 639px) {
-  .toStackOrNotToStack,
-  .toStackOrNotToStack a.nav-link {
-      padding: .5em .4em;
-  }
-}
-
-footer {
-  margin-top: 20px;
-  padding-top: 10px;
-  border-top: 1px solid lightgray;
-  font-size: 0.8em;
-  text-align: center;
-}
-#footername {
-  font-weight: bold;
-  margin: 0px;
-  padding: 0px;
-}
-.facebook {
-  background: rgb(59, 89, 152);
-}
-.twitter {
-  background: rgb(0, 172, 237);
-}
-.youtube {
-  background: rgb(179, 18, 23);
 }

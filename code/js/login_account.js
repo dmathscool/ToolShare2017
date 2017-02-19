@@ -7,7 +7,12 @@ $("#login").click(function(){
 
 	if( name =='' || password =='')
 		{
-		  alert("Please fill in all fields");
+		  //alert("Please fill in all fields");
+			//temporarily bypassing login so that I can work locally without doing stuff and things
+			//if i forget to revert this, feel free to chastise me 
+			//--geoff
+			logIn("fred");
+			window.location.replace("index.html");
 		}
 	else
 	   {

@@ -54,14 +54,14 @@ onsubmit="logInAsNewUser()"
         action="#"
         >
     <label for="username">Username: </label>
-    <input type="text" name="username" id="username"><br>
+    <input type="text" name="username" id="username" required><br>
     <label for="password">Password: </label>
-    <input type="text" name="password" id="password"><br>
+    <input type="password" name="password" id="password" required><br>
     <label for="zip">Zip code: </label>
-    <input type="text" name="zip" id="zip"><br>
+    <input type="number" name="zip" id="zip" min='10000' max='99999' required><br>
     <label for="email">E-mail address: </label>
-    <input type="text" name="email" id="email"><br>
-    <input type="button" name="register" id="register" value="Create account and log in">
+    <input type="email" name="email" id="email" required placeholder="Enter a valid email address"<br>
+    <input type="submit" name="register" id="register" value="Create account and log in">
   </form>
 
   <script src="https://ajax.googleapis.com/ajax/libs/jquery/2.1.4/jquery.min.js"></script>

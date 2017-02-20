@@ -24,7 +24,7 @@ $("#login").click(function(){
 					 	logIn(name);
 						window.location.replace("index.html");
 				 } else {
-					 alert(data);}
+					 alert("Login Failed: " + data);}
 				 });
 	   }
 

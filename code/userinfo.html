@@ -28,7 +28,7 @@
     .userinfoblock {
       margin: 20px;
     }
-    .username {
+    #username {
       font-weight: bold;
     }
   </style>
@@ -52,12 +52,17 @@
 <div class="userinfoblock">
 
   <div class="userinfointro">
-    User info for <span class="username">pants</span>
+    User info for <span id="username"></span>
   </div>
   
   <div class="userinfoemail">
-    <input type="text" name="email" id="email" value="pants@gmail.com">
+    <input type="text" name="email" id="email">
     <input type="button" name="updateemail" id="updateemail" value="Update e-mail address">
+  </div>
+
+  <div class="userinfoemail">
+    <input type="text" name="zip" id="zip">
+    <input type="button" name="updatezip" id="updatezip" value="Update ZIP code">
   </div>
 
   <div class="userinfopassword">
@@ -65,13 +70,8 @@
     <input type="button" name="changepassword" id="changepassword" value="Change password">
   </div>
 
-  <div class="userinfoemail">
-    <input type="text" name="zip" id="zip" value="90210">
-    <input type="button" name="updatezip" id="updatezip" value="Update ZIP code">
-  </div>
-
   <div class="userinforating">
-    User rating: <span class="rating">42.0</span>
+    User rating: <span id="rating"></span>
   </div>
 
 </div>
@@ -86,6 +86,7 @@
 <script type="text/javascript" src="js/menu.js"></script>
 <script type="text/javascript" src="js/filters.js"></script>
 <script type="text/javascript" src="js/tool.js"></script>
+<script type="text/javascript" src="js/get_userinfo.js"></script>
 
 </body>
 </html>

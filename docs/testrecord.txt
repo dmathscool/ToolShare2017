@@ -1,0 +1,17 @@
+ToolShare testing
+
+Register User:
+Expected case - Enter all valid fields and user will be added to the database and brought to the main ToolShare screen PASS
+Failure cases:
+1) Try entering empty fields - expect failure message PASS
+2) Try entering invalid email address (looking for *@*.*) - expect failure message PASS
+3) Try entering invalid zip code (looking for 5 numeric digits or zip+4) - expect failure message PASS
+
+Login User:
+Expected case - Enter a username/password that is in the registered database, login button brings user to the main Toolshare screen PASS
+Failure cases:
+1) Try user name/password not in database - expect failure PASS
+2) Try correct username and password with incorrect case - expect failure PASS
+
+Logout:
+Expected case - Click the logout button.  This returns to the main toolshare screen where you are not logged in and can't view your account. PASS

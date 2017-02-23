@@ -1,0 +1,30 @@
+Work in progress - git commands for the branch/rebase/merge workflow suggested in class
+
+1) git pull origin master //Gets the latest code from master and pulls it to your local repository - note this won't work if you have changes in progress - see my trick below
+2) git checkout -b yourbranchname // This creates a new (local) branch from master at the latest point
+3) git commit -m "enter your comment here" //do your work and checkin
+4) git push -u origin yourbranchname //You don't need to do this, but it's nice for everyone to see - pushed your branch to remote
+5) Once you are done and tested your changes - rebase from master
+	- git checkout master
+	- git pull
+	- git checkout yourbranchname //Checks out an existing branch
+	- git rebase master //Tries to bring in any changes from master, and then re-create your changes on top of that
+		- Any conflicts need to be resolved
+		- Once conflicts resolved, git rebase --continue
+	- git push --force origin yourbranchname //I know the force sounds like a bad idea, but reading the docs makes this seem to be the correct thing to do.
+6) Once you re-test everything with any changes from master and are ready to merge back
+	- git checkout yourbranchname
+	- git pull
+	- git checkout master
+	- git pull
+	- git merge --no-ff yourbranchname
+	- git push origin master
+
+
+My trick - if I am working on a branch that someone else is using, before I check in I might "stash" and pull the latest changes
+git stash //puts your work in progress in a special place
+git pull // gets the latest from the public version of the branch you are on
+git stash apply //re-do my in progress changes on the latest code
+
+
+git status - very useful command to tell what branch you are on

@@ -14,7 +14,7 @@ $(document).ready(function(){
 
 				$("#username").text(userInfo[0]['username']);
 				$("#emailfield").val(userInfo[0]['email']);
-				$("#zipfield").val(userInfo[0]['zipcode']);
+				$("#zipcodefield").val(userInfo[0]['zipcode']);
 				$("#rating").text(userInfo[0]['rating']);
 			}
 			else {
@@ -26,42 +26,38 @@ $(document).ready(function(){
 
 });
 
-function updateEmail() {
-	console.log("updating email");
+// input is the text name of the field to be changed.
+// this needs to match the id of the text box containing it (which should be "[name]field").
+// this also needs to match the name of the column in the database
+function updateSomething(modifiedField) {
+	console.log("updating " + modifiedField);
 
 	var username = document.getElementById('username').innerHTML;
-    var newEmail = document.getElementById('emailfield').value;
+    var newVal = document.getElementById(modifiedField+'field').value;
     
-    $.post("../DatabaseRelated/updateemail.php",
-            {name:username,email:newEmail},
+    $.post("../DatabaseRelated/updateuserfield.php",
+            {name:username,field:modifiedField,newval:newVal},
             function(data){
               if (data == "Success"){
                 document.getElementById('updateresult').innerHTML = "";
-				document.getElementById('updateresult').append("E-mail address successfully updated");
+				document.getElementById('updateresult').append(modifiedField + " successfully updated");
               }
 			  else {
 				document.getElementById('updateresult').innerHTML = "";
-				document.getElementById('updateresult').append("Error updating e-mail address: " + data);
+				document.getElementById('updateresult').append("Error updating " + modifiedField + ": " + data);
               }
             })
 }
 
-function updateZip() {
-	console.log("updating zip");
+function updateEmail() {
+	updateSomething('email');
+}
 
-	var username = document.getElementById('username').innerHTML;
-	var newZip = document.getElementById('zipfield').value;
-    
-	document.getElementById('updateresult').innerHTML = "";
-	document.getElementById('updateresult').append("ZIP code successfully updated");
+function updateZipcode() {
+	updateSomething('zipcode');
 }
 
 function updatePassword() {
-	console.log("updating password");
-
-	var username = document.getElementById('username').innerHTML;
-	var newPassword = document.getElementById('passwordfield').value;
-
-	document.getElementById('updateresult').innerHTML = "";
-	document.getElementById('updateresult').append("Password successfully updated");
+	updateSomething('password');
+	document.getElementById('passwordfield').value = "";
 }

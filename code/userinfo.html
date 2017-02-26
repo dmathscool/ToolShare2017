@@ -56,22 +56,25 @@
   </div>
   
   <div class="userinfoemail">
-    <input type="text" name="email" id="email">
-    <input type="button" name="updateemail" id="updateemail" value="Update e-mail address">
+    <input type="text" name="email" id="emailfield">
+    <input onclick="updateEmail()" type="submit" value="Update e-mail address" id="updateemailbutton">
   </div>
 
   <div class="userinfozip">
-    <input type="text" name="zip" id="zip">
-    <input type="button" name="updatezip" id="updatezip" value="Update ZIP code">
+    <input type="text" name="zip" id="zipfield">
+    <input onclick="updateZip()" type="submit" value="Update ZIP code" id="updatezipbutton">
   </div>
 
   <div class="userinfopassword">
-    <input type="text" name="password" id="password">
-    <input type="button" name="changepassword" id="changepassword" value="Change password">
+    <input type="password" name="password" id="passwordfield">
+    <input onclick="updatePassword()" type="submit" value="Update password" id="updatepasswordbutton">
   </div>
 
   <div class="userinforating">
     User rating: <span id="rating"></span>
+  </div>
+
+  <div id="updateresult">
   </div>
 
 </div>
@@ -86,7 +89,7 @@
 <script type="text/javascript" src="js/menu.js"></script>
 <script type="text/javascript" src="js/filters.js"></script>
 <script type="text/javascript" src="js/tool.js"></script>
-<script type="text/javascript" src="js/get_userinfo.js"></script>
+<script type="text/javascript" src="js/userinfo.js"></script>
 
 </body>
 </html>

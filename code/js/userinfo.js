@@ -39,22 +39,34 @@ function updateSomething(modifiedField) {
             {name:username,field:modifiedField,newval:newVal},
             function(data){
               if (data == "Success"){
-                document.getElementById('updateresult').innerHTML = "";
-				document.getElementById('updateresult').append(modifiedField + " successfully updated");
+				document.getElementById('updateresult').innerHTML = modifiedField + " successfully updated";
               }
 			  else {
-				document.getElementById('updateresult').innerHTML = "";
-				document.getElementById('updateresult').append("Error updating " + modifiedField + ": " + data);
+				document.getElementById('updateresult').innerHTML = "Error updating " + modifiedField + ": " + data;
               }
             })
 }
 
 function updateEmail() {
-	updateSomething('email');
+	var email = document.getElementById('emailfield').value;
+
+	if( isValidEmail(email)) {
+		updateSomething('email');
+	}
+	else {
+		document.getElementById('updateresult').innerHTML = "E-mail address is not in the proper format. Please try again with the form myname@myplace.com";
+	}
 }
 
 function updateZipcode() {
-	updateSomething('zipcode');
+	var zip = document.getElementById('zipcodefield').value;
+
+	if( isValidZip(zip)) {
+		updateSomething('zipcode');
+	}
+	else {
+		document.getElementById('updateresult').innerHTML = "ZIP code is not in the proper format. Please try again with the form 90210";
+	}
 }
 
 function updatePassword() {

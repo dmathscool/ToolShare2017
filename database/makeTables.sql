@@ -24,6 +24,7 @@ CREATE TABLE IF NOT EXISTS `magic947_toolshare`.`RegUsers` (
   `email` VARCHAR(200) NOT NULL,
   `rating` DECIMAL(2,1) NOT NULL DEFAULT 3,
   `zipcode` VARCHAR(5) NOT NULL,
+  `numRatings` INT NOT NULL DEFAULT 1,
   PRIMARY KEY (`idRegisteredUsers`))
 ENGINE = InnoDB;
 
@@ -40,7 +41,6 @@ CREATE TABLE IF NOT EXISTS `magic947_toolshare`.`Tools` (
   `ToolType` VARCHAR(50) NULL,
   `ToolBrand` VARCHAR(50) NULL,
   `ToolCondition` VARCHAR(45) NULL,
-  `ImgFileLoc` VARCHAR(200) NULL,
   PRIMARY KEY (`idTool`),
   INDEX `fk_Tools_RegUsers_idx` (`RegUsers_OriginalUser` ASC),
   INDEX `fk_Tools_RegUsers1_idx` (`RegUsers_CurrentUser` ASC),

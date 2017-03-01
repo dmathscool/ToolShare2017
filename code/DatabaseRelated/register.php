@@ -8,7 +8,7 @@ $zip=$_POST['zip'];
 
 //should probably do some checking on email status/quality
 $result=mysqli_query($conn,"SELECT * FROM RegUsers WHERE
-                     email='$email' AND username='$name'");
+                    username='$name'");
 $data= mysqli_num_rows($result);
 if (($data)==0){
   $query=mysqli_query($conn,"INSERT INTO RegUsers(username,password,zipcode,email)

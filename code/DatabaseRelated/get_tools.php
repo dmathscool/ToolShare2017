@@ -28,4 +28,6 @@ if (($jsonString)==FALSE) {
 } else {
   echo $jsonString;
 }
+
+mysqli_close($conn);
 ?>

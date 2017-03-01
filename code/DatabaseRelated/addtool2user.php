@@ -39,5 +39,4 @@ if ($data == 1 ){
 }
 
 mysqli_close($conn);
-
 ?>

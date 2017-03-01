@@ -14,4 +14,5 @@ if (($data)==0){
 } else {
   echo 'Successful Login';
 }
+mysqli_close($conn);
 ?>

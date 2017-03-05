@@ -77,12 +77,6 @@
         <li>Borrow shows up in both logged in and logged out modes. My intent is for the logged-out version of borrow to let the user search
             and have the borrow buttons grayed out with a note that you need to create an account to use the feature.</li>
 
-        <li>Create account doesn't actually create anything right now. It just logs in as the user in the username field</li>
-
-        <li>Log in doesn't check the password or that the user exists. It simply takes whatever is in the username field and "logs in" as that name</li>
-
-        <li>Log out actually works as it should in the final product: delete the user cookie and kick back to the main page</li>
-
         <li>Any user, logged in or not, could type in the URL for any page and go there even if it doesn't make sense for a user of that type to go there.
           For example, a person who isn't logged in shouldn't see the transactions page. The best way to handle that is probably to check for login at page load
           and send you to the login page instead if you aren't logged in.

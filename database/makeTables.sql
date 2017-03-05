@@ -41,6 +41,7 @@ CREATE TABLE IF NOT EXISTS `magic947_toolshare`.`Tools` (
   `ToolType` VARCHAR(50) NULL,
   `ToolBrand` VARCHAR(50) NULL,
   `ToolCondition` VARCHAR(45) NULL,
+  `ImgFileLoc` VARCHAR(200) NULL,
   PRIMARY KEY (`idTool`),
   INDEX `fk_Tools_RegUsers_idx` (`RegUsers_OriginalUser` ASC),
   INDEX `fk_Tools_RegUsers1_idx` (`RegUsers_CurrentUser` ASC),
@@ -55,31 +56,6 @@ CREATE TABLE IF NOT EXISTS `magic947_toolshare`.`Tools` (
     ON DELETE NO ACTION
     ON UPDATE NO ACTION)
 ENGINE = InnoDB;
-
-USE `magic947_toolshare` ;
-
--- -----------------------------------------------------
--- Placeholder table for view `magic947_toolshare`.`view1`
--- -----------------------------------------------------
-CREATE TABLE IF NOT EXISTS `magic947_toolshare`.`view1` (`id` INT);
-
--- -----------------------------------------------------
--- Placeholder table for view `magic947_toolshare`.`view2`
--- -----------------------------------------------------
-CREATE TABLE IF NOT EXISTS `magic947_toolshare`.`view2` (`id` INT);
-
--- -----------------------------------------------------
--- View `magic947_toolshare`.`view1`
--- -----------------------------------------------------
-DROP TABLE IF EXISTS `magic947_toolshare`.`view1`;
-USE `magic947_toolshare`;
-
-
--- -----------------------------------------------------
--- View `magic947_toolshare`.`view2`
--- -----------------------------------------------------
-DROP TABLE IF EXISTS `magic947_toolshare`.`view2`;
-USE `magic947_toolshare`;
 
 
 SET SQL_MODE=@OLD_SQL_MODE;

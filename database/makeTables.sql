@@ -24,6 +24,7 @@ CREATE TABLE IF NOT EXISTS `magic947_toolshare`.`RegUsers` (
   `email` VARCHAR(200) NOT NULL,
   `rating` DECIMAL(2,1) NOT NULL DEFAULT 3,
   `zipcode` VARCHAR(5) NOT NULL,
+  `numRatings` INT NOT NULL DEFAULT 1,
   PRIMARY KEY (`idRegisteredUsers`))
 ENGINE = InnoDB;
 
@@ -33,11 +34,13 @@ ENGINE = InnoDB;
 -- -----------------------------------------------------
 CREATE TABLE IF NOT EXISTS `magic947_toolshare`.`Tools` (
   `idTool` INT NOT NULL AUTO_INCREMENT,
-  `ToolName` VARCHAR(200) NULL,
-  `ToolType` VARCHAR(50) NULL,
   `RegUsers_OriginalUser` INT NOT NULL,
   `RegUsers_CurrentUser` INT NULL,
   `ToolState` INT NULL DEFAULT 0,
+  `ToolName` VARCHAR(200) NULL,
+  `ToolType` VARCHAR(50) NULL,
+  `ToolBrand` VARCHAR(50) NULL,
+  `ToolCondition` VARCHAR(45) NULL,
   PRIMARY KEY (`idTool`),
   INDEX `fk_Tools_RegUsers_idx` (`RegUsers_OriginalUser` ASC),
   INDEX `fk_Tools_RegUsers1_idx` (`RegUsers_CurrentUser` ASC),
@@ -52,6 +55,31 @@ CREATE TABLE IF NOT EXISTS `magic947_toolshare`.`Tools` (
     ON DELETE NO ACTION
     ON UPDATE NO ACTION)
 ENGINE = InnoDB;
+
+USE `magic947_toolshare` ;
+
+-- -----------------------------------------------------
+-- Placeholder table for view `magic947_toolshare`.`view1`
+-- -----------------------------------------------------
+CREATE TABLE IF NOT EXISTS `magic947_toolshare`.`view1` (`id` INT);
+
+-- -----------------------------------------------------
+-- Placeholder table for view `magic947_toolshare`.`view2`
+-- -----------------------------------------------------
+CREATE TABLE IF NOT EXISTS `magic947_toolshare`.`view2` (`id` INT);
+
+-- -----------------------------------------------------
+-- View `magic947_toolshare`.`view1`
+-- -----------------------------------------------------
+DROP TABLE IF EXISTS `magic947_toolshare`.`view1`;
+USE `magic947_toolshare`;
+
+
+-- -----------------------------------------------------
+-- View `magic947_toolshare`.`view2`
+-- -----------------------------------------------------
+DROP TABLE IF EXISTS `magic947_toolshare`.`view2`;
+USE `magic947_toolshare`;
 
 
 SET SQL_MODE=@OLD_SQL_MODE;

@@ -6,20 +6,18 @@ $("#register").click(function(){
 	var email = $("#email").val();
 	var password = $("#password").val();
 	var zipcode= $("#zip").val();
-	var isValidZip = /^[0-9]{5}(?:-[0-9]{4})?$/.test(zipcode);
-	var isValidEmail = /^(([^<>()[\]\\.,;:\s@\"]+(\.[^<>()[\]\\.,;:\s@\"]+)*)|(\".+\"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$/.test(email);
 
 	if( name =='' || email =='' || password =='' || zipcode=='')
 		{
 		  alert("Please fill in all fields");
 		}
-	else if (!isValidZip)
+	else if (!isValidZip(zipcode))
 		{
-			alert("Please enter a valid zip code");
+			document.getElementById('createresult').innerHTML = "Please enter a valid ZIP code";
 		}
-	else if (!isValidEmail)
+	else if (!isValidEmail(email))
 		{
-			alert("Please enter a valid email address");
+			document.getElementById('createresult').innerHTML = "Please enter a valid e-mail address";
 		}
 	else
 	   {
@@ -31,7 +29,8 @@ $("#register").click(function(){
 					  logIn(name);
 						window.location.replace("index.html");
 				 } else {
-					 alert(data);}
+					 document.getElementById('createresult').innerHTML = "Account creation error: " + data;
+					}
 				 });
        //in addition to or instead of the alert(data) part, could also put a
 			 //method to refresh the page or go to a different page..

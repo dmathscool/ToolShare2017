@@ -1,0 +1,96 @@
+<!doctype html>
+<html lang="en">
+ <head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <title>ToolShare</title>
+  
+  <!-- jQuery -->
+  <script src="https://code.jquery.com/jquery-2.1.3.js"></script>
+  <script src="https://code.jquery.com/ui/1.11.2/jquery-ui.js"></script> 
+  
+  <!-- fonts -->
+  <link href="https://fonts.googleapis.com/css?family=Raleway" rel="stylesheet" type="text/css">
+  <script src="https://www.atlasestateagents.co.uk/javascript/tether.min.js"></script>
+
+  <link rel="stylesheet" href="pure/pure-min.css">
+  <link rel="stylesheet" href="css/icono.min.css">
+  
+  <!-- page layout library -->
+  <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0-alpha.2/css/bootstrap.min.css"
+        integrity="sha384-y3tfxAZXuh4HwSYylfB+J125MxIs6mR5FOHamPBG064zB+AFeWH94NdvaCBm8qnd"
+        crossorigin="anonymous">
+
+  <link rel="stylesheet" type="text/css" href="css/style.css">
+  
+  <style>
+    .userinfoblock {
+      margin: 20px;
+    }
+    #username {
+      font-weight: bold;
+    }
+  </style>
+
+ </head>
+<body onload="initMenu()">
+
+<nav class="navbar navbar-light bg-faded navbar-fixed-top">
+
+  <div>
+    <a class="navbar-brand" href="index.html"><img src="img/gearlogo.png" height=100></a>
+
+    <br><br>
+
+    <ul class="nav nav-pills fillUpNavbar">
+      <!-- to be filled in programmatically -->
+    </ul>
+  </div>
+</nav>
+
+<div class="userinfoblock">
+
+  <div class="userinfointro">
+    User info for <span id="username"></span>
+  </div>
+  
+  <div class="userinfoemail">
+    <input type="text" name="email" id="emailfield">
+    <input onclick="updateEmail()" type="submit" value="Update e-mail address" id="updateemailbutton">
+  </div>
+
+  <div class="userinfozip">
+    <input type="text" name="zipcode" id="zipcodefield">
+    <input onclick="updateZipcode()" type="submit" value="Update ZIP code" id="updatezipcodebutton">
+  </div>
+
+  <div class="userinfopassword">
+    <input type="password" name="password" id="passwordfield">
+    <input onclick="updatePassword()" type="submit" value="Update password" id="updatepasswordbutton">
+  </div>
+
+  <div class="userinforating">
+    User rating: <span id="rating"></span>
+  </div>
+
+  <div id="updateresult">
+  </div>
+
+</div>
+
+  <script src="https://ajax.googleapis.com/ajax/libs/jquery/2.1.4/jquery.min.js"></script>
+  <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0-alpha.2/js/bootstrap.min.js"
+          integrity="sha384-vZ2WRJMwsjRMW/8U7i6PWi6AlO1L79snBrmgiDpgIWJ82z8eA5lenwvxbMV1PAh7"
+          crossorigin="anonymous"></script>
+
+<script type="text/javascript" src="js/dataValidation.js"></script>
+<script type="text/javascript" src="js/js.cookie.js"></script>
+<script type="text/javascript" src="js/loginout.js"></script>
+<script type="text/javascript" src="js/menu.js"></script>
+<script type="text/javascript" src="js/filters.js"></script>
+<script type="text/javascript" src="js/tool.js"></script>
+<script type="text/javascript" src="js/userinfo.js"></script>
+
+</body>
+</html>

@@ -1,26 +1,44 @@
+$(document).ready(function(){
+
 var starClicked = 0;
+var maxStars = 5;
 
 function grayAllStars() {
-    $("#star1").attr("src","img/star_bw.png");
-    $("#star2").attr("src","img/star_bw.png");
-    $("#star3").attr("src","img/star_bw.png");
-    $("#star4").attr("src","img/star_bw.png");
-    $("#star5").attr("src","img/star_bw.png");
+    for( i = 1; i <= maxStars; i++ ) {
+        $("#star" + i.toString()).attr("src","img/star_bw.png");
+    }
 }
 
-function goldStarsUpToClicked() {
+function goldSomeStars(num) {
     grayAllStars();
-    for( i = 1; i <= starClicked; i++ ) {
+    for( i = 1; i <= num; i++ ) {
         $("#star" + i.toString()).attr("src","img/star_gold.png");
     }
 }
 
+function goldStarsUpToClicked() {
+    goldSomeStars(starClicked);
+}
+
+
+$("#submitrating").click(function(){
+    name = "geoff";
+    rating = starClicked;
+    
+    $.post("../DatabaseRelated/rate.php",
+        {name1:name,rating1:rating},
+            function(data) {
+                if (data == "Successful Rating"){
+                    $('#ratingresult').text("Successfully rated user");
+                } else {
+                    $('#ratingresult').text("Something went wrong. Please try again.");
+                    console.log(data);
+                }
+            });
+	});
+
 $("#star1").mouseover( function() {
-    $("#star1").attr("src","img/star_gold.png");
-    $("#star2").attr("src","img/star_bw.png");
-    $("#star3").attr("src","img/star_bw.png");
-    $("#star4").attr("src","img/star_bw.png");
-    $("#star5").attr("src","img/star_bw.png");
+    goldSomeStars(1);
 })
 .mouseleave( function() {
     goldStarsUpToClicked();
@@ -30,11 +48,7 @@ $("#star1").mouseover( function() {
 });
 
 $("#star2").mouseover( function() {
-    $("#star1").attr("src","img/star_gold.png");
-    $("#star2").attr("src","img/star_gold.png");
-    $("#star3").attr("src","img/star_bw.png");
-    $("#star4").attr("src","img/star_bw.png");
-    $("#star5").attr("src","img/star_bw.png");
+    goldSomeStars(2);
 })
 .mouseleave( function() {
     goldStarsUpToClicked();
@@ -44,11 +58,7 @@ $("#star2").mouseover( function() {
 });
 
 $("#star3").mouseover( function() {
-    $("#star1").attr("src","img/star_gold.png");
-    $("#star2").attr("src","img/star_gold.png");
-    $("#star3").attr("src","img/star_gold.png");
-    $("#star4").attr("src","img/star_bw.png");
-    $("#star5").attr("src","img/star_bw.png");
+    goldSomeStars(3);
 })
 .mouseleave( function() {
     goldStarsUpToClicked();
@@ -58,11 +68,7 @@ $("#star3").mouseover( function() {
 });
 
 $("#star4").mouseover( function() {
-    $("#star1").attr("src","img/star_gold.png");
-    $("#star2").attr("src","img/star_gold.png");
-    $("#star3").attr("src","img/star_gold.png");
-    $("#star4").attr("src","img/star_gold.png");
-    $("#star5").attr("src","img/star_bw.png");
+    goldSomeStars(4);
 })
 .mouseleave( function() {
     goldStarsUpToClicked();
@@ -72,15 +78,13 @@ $("#star4").mouseover( function() {
 });
 
 $("#star5").mouseover( function() {
-    $("#star1").attr("src","img/star_gold.png");
-    $("#star2").attr("src","img/star_gold.png");
-    $("#star3").attr("src","img/star_gold.png");
-    $("#star4").attr("src","img/star_gold.png");
-    $("#star5").attr("src","img/star_gold.png");
+    goldSomeStars(5);
 })
 .mouseleave( function() {
     goldStarsUpToClicked();
 })
 .click( function() {
     starClicked = 5;
+});
+
 });

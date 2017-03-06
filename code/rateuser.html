@@ -36,6 +36,9 @@
       margin: 0px;
       padding: 0px;
     }
+    #buttondiv {
+      margin-top: 10px;
+    }
   </style>
 
  </head>
@@ -64,7 +67,15 @@
     <!-- the stars are all in a big, annoying row to remove the gaps between them when the HTML is displayed -->
     <img class="starpic" id="star1" src="img/star_bw.png"><img class="starpic" id="star2" src="img/star_bw.png"><img class="starpic" id="star3" src="img/star_bw.png"><img class="starpic" id="star4" src="img/star_bw.png"><img class="starpic" id="star5" src="img/star_bw.png">
     </div>
-
+  
+  <div id="buttondiv">
+    <form method="post"
+      class="form"
+      action="#"
+      >
+      <input type="button" name="submitrating" id="submitrating" value="Submit rating">
+    </form>
+    </div>
 
   <div id="ratingresult">
   </div>
@@ -82,7 +93,6 @@
 <script type="text/javascript" src="js/menu.js"></script>
 <script type="text/javascript" src="js/filters.js"></script>
 <script type="text/javascript" src="js/tool.js"></script>
-<script type="text/javascript" src="js/userinfo.js"></script>
 <script type="text/javascript" src="js/rating.js"></script>
 
 </body>

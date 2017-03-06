@@ -5,7 +5,7 @@ $("#login").click(function(){
 	var name = $("#username").val();
 	var password = $("#password").val();
 
-	if( name =='' || password =='')
+	if( name =='' && password == '')
 		{
 		  //alert("Please fill in all fields");
 			//temporarily bypassing login so that I can work locally without doing stuff and things

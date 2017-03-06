@@ -23,13 +23,18 @@
         crossorigin="anonymous">
 
   <link rel="stylesheet" type="text/css" href="css/style.css">
-  
+
   <style>
     .userinfoblock {
       margin: 20px;
     }
     #username {
       font-weight: bold;
+    }
+    .starpic {
+      width: 50px;
+      margin: 0px;
+      padding: 0px;
     }
   </style>
 
@@ -49,32 +54,19 @@
   </div>
 </nav>
 
-<div class="userinfoblock">
+<div class="rateblock">
 
   <div class="userinfointro">
-    User info for <span id="username"></span>
+    Please rate your transaction with <span id="username">Fred</span>
   </div>
   
-  <div class="userinfoemail">
-    <input type="text" name="email" id="emailfield">
-    <input onclick="updateEmail()" type="submit" value="Update e-mail address" id="updateemailbutton">
-  </div>
+  <div id="allthestars">
+    <!-- the stars are all in a big, annoying row to remove the gaps between them when the HTML is displayed -->
+    <img class="starpic" id="star1" src="img/star_bw.png"><img class="starpic" id="star2" src="img/star_bw.png"><img class="starpic" id="star3" src="img/star_bw.png"><img class="starpic" id="star4" src="img/star_bw.png"><img class="starpic" id="star5" src="img/star_bw.png">
+    </div>
 
-  <div class="userinfozip">
-    <input type="text" name="zipcode" id="zipcodefield">
-    <input onclick="updateZipcode()" type="submit" value="Update ZIP code" id="updatezipcodebutton">
-  </div>
 
-  <div class="userinfopassword">
-    <input type="password" name="password" id="passwordfield">
-    <input onclick="updatePassword()" type="submit" value="Update password" id="updatepasswordbutton">
-  </div>
-
-  <div class="userinforating">
-    User rating: <span id="rating"></span>
-  </div>
-
-  <div id="updateresult">
+  <div id="ratingresult">
   </div>
 
 </div>
@@ -91,6 +83,7 @@
 <script type="text/javascript" src="js/filters.js"></script>
 <script type="text/javascript" src="js/tool.js"></script>
 <script type="text/javascript" src="js/userinfo.js"></script>
+<script type="text/javascript" src="js/rating.js"></script>
 
 </body>
 </html>

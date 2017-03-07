@@ -1,5 +1,9 @@
 $(document).ready(function(){
 
+var urlParams = querystring.parse(window.location.search);
+var name = urlParams['name'];
+$('#username').text(name);
+
 var starClicked = 0;
 var maxStars = 5;
 
@@ -22,16 +26,19 @@ function goldStarsUpToClicked() {
 
 
 $("#submitrating").click(function(){
-    name = "geoff";
     rating = starClicked;
     
     $.post("../DatabaseRelated/rate.php",
         {name1:name,rating1:rating},
             function(data) {
-                if (data == "Successful Rating"){
-                    $('#ratingresult').text("Successfully rated user");
+                if (data == "Successful Rating") {
+                    $('#ratingresult').text("Successfully rated " + name);
+                } else if (data == "Duplicate User") {
+                    $('#ratingresult').text("Error: User " + name + " is not unique. Please contact a site admin.");
+                } else if (data == "No User") {
+                    $('#ratingresult').text("Error: User " + name + " does not exist. Please contact a site admin.");
                 } else {
-                    $('#ratingresult').text("Something went wrong. Please try again.");
+                    $('#ratingresult').text("Error: Something went wrong. Please try again. If the problem persists, please contact a site admin.");
                     console.log(data);
                 }
             });

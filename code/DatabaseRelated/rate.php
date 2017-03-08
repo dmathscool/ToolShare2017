@@ -32,8 +32,7 @@ $numRatings = intval($row['numRatings']);
 
 //echo "Rating was $userRating w/ $numRatings ratings. Assigned rating is $assignedRating.";
 
-//$userRating = floatval($userRating * floatval($numRatings) + $assignedRating) / floatval($numRatings + 1);
-$userRating = ($userRating * floatval($numRatings) + $assignedRating) / ($numRatings + 1);
+$userRating = floatval($userRating * floatval($numRatings) + $assignedRating) / floatval($numRatings + 1);
 $numRatings = $numRatings + 1;
 
 $query="UPDATE RegUsers SET rating=$userRating, numRatings=$numRatings WHERE username='$name'";

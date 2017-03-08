@@ -26,6 +26,11 @@ function goldStarsUpToClicked() {
 
 
 $("#submitrating").click(function(){
+    if (starClicked == 0) {
+        $('#ratingresult').text("Please select a rating before submitting.");
+        return;
+    }
+
     rating = starClicked;
     
     $.post("../DatabaseRelated/rate.php",

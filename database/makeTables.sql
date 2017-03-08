@@ -22,7 +22,7 @@ CREATE TABLE IF NOT EXISTS `magic947_toolshare`.`RegUsers` (
   `username` VARCHAR(200) NOT NULL,
   `password` VARCHAR(16) NOT NULL,
   `email` VARCHAR(200) NOT NULL,
-  `rating` DECIMAL(2,1) NOT NULL DEFAULT 3,
+  `rating` FLOAT(5,4) NOT NULL DEFAULT 3,
   `zipcode` VARCHAR(5) NOT NULL,
   `numRatings` INT NOT NULL DEFAULT 1,
   PRIMARY KEY (`idRegisteredUsers`))

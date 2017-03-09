@@ -20,7 +20,7 @@ if (($data)==0){
     echo "Error registering.";
   }
 } else {
-  echo "Email already in use";
+  echo "Account name already in use";
 }
 mysqli_close($conn);
 ?>

@@ -14,6 +14,13 @@
   <link href="https://fonts.googleapis.com/css?family=Raleway" rel="stylesheet" type="text/css">
   <script src="https://www.atlasestateagents.co.uk/javascript/tether.min.js"></script>
 
+  <script>
+  function ratedude() {
+    thisguy = $("#ratethisguy").val();
+    window.location.replace("rateuser.html?name="+thisguy);
+  }
+  </script>
+
   <link rel="stylesheet" href="pure/pure-min.css">
   <link rel="stylesheet" href="css/icono.min.css">
   
@@ -31,7 +38,6 @@
     table {
       border-collapse: collapse;
       border: 1px solid black;
-      margin: 25px;
       margin-bottom: 40px;
     }
     table td {
@@ -75,6 +81,11 @@
   <tr> <td><img src="img/rando/terminator.jpg" class="toolpic"></td><td>Terminator</td><td>Pretty self explanatory</td><td>Skynet</td><td>Will be back</td><td>Returned</td>
             <td><input onclick="editTool()" type="submit" value="Next Step" id="submit"></td> </tr>  
 </table>
+
+<label for="ratethisguy">Rate this user: </label>
+<input type="text" name="ratethisguy" id="ratethisguy">
+<!-- when deleting this, also delete ratedude() in head tag above -->
+<input type="button" value="<-- rate this guy" name="ratebutton" id="ratebutton" onclick="ratedude()"><br><br>
 
 <table>
   <tr> <td class="tableheader" colspan=7>Their tools</td> </tr>

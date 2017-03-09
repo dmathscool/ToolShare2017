@@ -21,16 +21,23 @@
   <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0-alpha.2/css/bootstrap.min.css"
         integrity="sha384-y3tfxAZXuh4HwSYylfB+J125MxIs6mR5FOHamPBG064zB+AFeWH94NdvaCBm8qnd"
         crossorigin="anonymous">
-  
-  <link rel="stylesheet" type="text/css" href="css/style.css">
-  
-  <style>
-    .banner {
-      padding-bottom: 10px;
-    }
 
-    .welcomeblock > p {
-      padding-left: 10px;
+  <link rel="stylesheet" type="text/css" href="css/style.css">
+
+  <style>
+    .userinfoblock {
+      margin: 20px;
+    }
+    #username {
+      font-weight: bold;
+    }
+    .starpic {
+      width: 50px;
+      margin: 0px;
+      padding: 0px;
+    }
+    #buttondiv {
+      margin-top: 10px;
     }
   </style>
 
@@ -38,8 +45,8 @@
 <body onload="initMenu()">
 
 <nav class="navbar navbar-light bg-faded navbar-fixed-top">
-  <div>
 
+  <div>
     <a class="navbar-brand" href="index.html"><img src="img/gearlogo.png" height=100></a>
 
     <br><br>
@@ -50,54 +57,44 @@
   </div>
 </nav>
 
-    <img src="img/biglogo.png" class="img-fluid m-x-auto banner">
+<div class="rateblock">
 
+  <div class="userinfointro">
+    Please rate your transaction with <span id="username"></span>
+  </div>
+  
+  <div id="allthestars">
+    <!-- the stars are all in a big, annoying row to remove the gaps between them when the HTML is displayed -->
+    <img class="starpic" id="star1" src="img/star_bw.png"><img class="starpic" id="star2" src="img/star_bw.png"><img class="starpic" id="star3" src="img/star_bw.png"><img class="starpic" id="star4" src="img/star_bw.png"><img class="starpic" id="star5" src="img/star_bw.png">
+    </div>
+  
+  <div id="buttondiv">
+    <form method="post"
+      class="form"
+      action="#"
+      >
+      <input type="button" name="submitrating" id="submitrating" value="Submit rating">
+    </form>
+    </div>
 
-<div class="container">
-<div class="row">
+  <div id="ratingresult">
+  </div>
 
-  <div class="indexcol">
-
-    <!-- greeting -->
-    <div class="textblock welcomeblock">
-    <h3 class="colorheader">Welcome!</h3>
-      <p>Our tools are awesome.</p>
-      <p>You should borrow them!</p>
-      <p>Natch.</p>
-    </div> <!-- textblock welcome -->
-
-  </div> <!-- col -->
-
-  <div class="indexcol">
-
-    <!-- greeting -->
-    <div class="textblock notesblock">
-    <h3 class="colorheader">Notes</h3>
-      <ul>
-        <li>Borrow shows up in both logged in and logged out modes. My intent is for the logged-out version of borrow to let the user search
-            and have the borrow buttons grayed out with a note that you need to create an account to use the feature.</li>
-
-        <li>Any user, logged in or not, could type in the URL for any page and go there even if it doesn't make sense for a user of that type to go there.
-          For example, a person who isn't logged in shouldn't see the transactions page. The best way to handle that is probably to check for login at page load
-          and send you to the login page instead if you aren't logged in.
-        </li>
-
-      </ul>
-    </div> <!-- textblock welcome -->
-
-  </div> <!-- col -->
-</div> <!-- row -->
-</div> <!-- container -->
-
+</div>
 
   <script src="https://ajax.googleapis.com/ajax/libs/jquery/2.1.4/jquery.min.js"></script>
   <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0-alpha.2/js/bootstrap.min.js"
           integrity="sha384-vZ2WRJMwsjRMW/8U7i6PWi6AlO1L79snBrmgiDpgIWJ82z8eA5lenwvxbMV1PAh7"
           crossorigin="anonymous"></script>
 
+<script type="text/javascript" src="js/dataValidation.js"></script>
 <script type="text/javascript" src="js/js.cookie.js"></script>
 <script type="text/javascript" src="js/loginout.js"></script>
 <script type="text/javascript" src="js/menu.js"></script>
+<script type="text/javascript" src="js/filters.js"></script>
+<script type="text/javascript" src="js/tool.js"></script>
+<script type="text/javascript" src="js/querystring.js"></script>
+<script type="text/javascript" src="js/rating.js"></script>
 
 </body>
 </html>

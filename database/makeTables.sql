@@ -22,7 +22,7 @@ CREATE TABLE IF NOT EXISTS `magic947_toolshare`.`RegUsers` (
   `username` VARCHAR(200) NOT NULL,
   `password` VARCHAR(16) NOT NULL,
   `email` VARCHAR(200) NOT NULL,
-  `rating` DECIMAL(2,1) NOT NULL DEFAULT 3,
+  `rating` FLOAT(5,4) NOT NULL DEFAULT 3,
   `zipcode` VARCHAR(5) NOT NULL,
   `numRatings` INT NOT NULL DEFAULT 1,
   PRIMARY KEY (`idRegisteredUsers`))
@@ -57,6 +57,41 @@ CREATE TABLE IF NOT EXISTS `magic947_toolshare`.`Tools` (
     ON UPDATE NO ACTION)
 ENGINE = InnoDB;
 
+
+-- -----------------------------------------------------
+-- Table `magic947_toolshare`.`TransactionHistory`
+-- -----------------------------------------------------
+CREATE TABLE IF NOT EXISTS `magic947_toolshare`.`TransactionHistory` (
+  `transactionId` INT UNSIGNED NOT NULL AUTO_INCREMENT,
+  `OriginalUser` INT NOT NULL,
+  `LoanedUser` INT NOT NULL,
+  `Tools_idTool` INT NOT NULL,
+  `Rating` DECIMAL(1) NULL DEFAULT 3,
+  `Comment` VARCHAR(45) NULL,
+  `DateBorrowed` DATETIME NULL,
+  `DateReturned` DATETIME NULL,
+  INDEX `fk_TransactionHistory_RegUsers1_idx` (`OriginalUser` ASC),
+  INDEX `fk_TransactionHistory_RegUsers2_idx` (`LoanedUser` ASC),
+  INDEX `fk_TransactionHistory_Tools1_idx` (`Tools_idTool` ASC),
+  PRIMARY KEY (`transactionId`),
+  CONSTRAINT `fk_TransactionHistory_RegUsers1`
+    FOREIGN KEY (`OriginalUser`)
+    REFERENCES `magic947_toolshare`.`RegUsers` (`idRegisteredUsers`)
+    ON DELETE NO ACTION
+    ON UPDATE NO ACTION,
+  CONSTRAINT `fk_TransactionHistory_RegUsers2`
+    FOREIGN KEY (`LoanedUser`)
+    REFERENCES `magic947_toolshare`.`RegUsers` (`idRegisteredUsers`)
+    ON DELETE NO ACTION
+    ON UPDATE NO ACTION,
+  CONSTRAINT `fk_TransactionHistory_Tools1`
+    FOREIGN KEY (`Tools_idTool`)
+    REFERENCES `magic947_toolshare`.`Tools` (`idTool`)
+    ON DELETE NO ACTION
+    ON UPDATE NO ACTION)
+ENGINE = InnoDB;
+
+USE `magic947_toolshare` ;
 
 SET SQL_MODE=@OLD_SQL_MODE;
 SET FOREIGN_KEY_CHECKS=@OLD_FOREIGN_KEY_CHECKS;

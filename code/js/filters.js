@@ -6,7 +6,7 @@ function populateToolnameDropdown() {
 
 				console.log(toolnames);
 				for (var i = 0; i<toolnames.length; i++) {
-					$(".filtertoolname").append("'<option value="+toolnames[i]['ToolName']+">'"+toolnames[i]['ToolName']+"'</option>'");
+					$(".filtertoolname").append("<option value="+toolnames[i]['ToolName']+">"+toolnames[i]['ToolName']+"</option>");
 				}
 
 			}
@@ -27,7 +27,7 @@ function populateTooltypeDropdown() {
 
 				console.log(tooltypes);
 				for (var i = 0; i<tooltypes.length; i++) {
-					$(".filtertooltype").append("'<option value="+tooltypes[i]['ToolType']+">'"+tooltypes[i]['ToolType']+"'</option>'");
+					$(".filtertooltype").append("<option value="+tooltypes[i]['ToolType']+">"+tooltypes[i]['ToolType']+"</option>");
 				}
 
 			}
@@ -48,7 +48,7 @@ function populateBrandDropdown() {
 
 				console.log(toolbrands);
 				for (var i = 0; i<toolbrands.length; i++) {
-					$(".filterbrand").append("'<option value="+toolbrands[i]['ToolBrand']+">'"+toolbrands[i]['ToolBrand']+"'</option>'");
+					$(".filterbrand").append("<option value="+toolbrands[i]['ToolBrand']+">"+toolbrands[i]['ToolBrand']+"</option>");
 				}
 
 			}
@@ -69,7 +69,7 @@ function populateConditionDropdown() {
 
 				console.log(toolconditions);
 				for (var i = 0; i<toolconditions.length; i++) {
-					$(".filtercondition").append("'<option value="+toolconditions[i]['ToolCondition']+">'"+toolconditions[i]['ToolCondition']+"'</option>'");
+					$(".filtercondition").append("<option value="+toolconditions[i]['ToolCondition']+">"+toolconditions[i]['ToolCondition']+"</option>");
 				}
 
 			}

@@ -6,9 +6,40 @@
 $conn=mysqli_connect("localhost","magic947_arthur","sweng987$$$","magic947_toolshare");
 
 $name=$_POST['username'];
+$toolname=$_POST['toolname'];
+$tooltype=$_POST['tooltype'];
+$toolcondition=$_POST['toolcondition'];
+$toolbrand=$_POST['toolbrand'];
+//build up the where clause if any of the search fields are populated
+$whereclause = "WHERE ";
+if (!empty($toolname)) {
+	$whereclause .= "ToolName LIKE '"+$toolname . "' ";
+}
+else{
+	$whereclause .= "ToolName LIKE '%' ";
+}
+if (!empty($tooltype)) {
+	$whereclause .= "AND ToolType='".$tooltype . "' ";
+}
+else{
+	$whereclause .= "AND ToolType LIKE '%' ";
+}
+if (!empty($toolcondition)) {
+	$whereclause .= "AND ToolCondition='".$toolcondition . "' ";
+}
+else{
+	$whereclause .= "AND ToolCondition LIKE '%' ";
+}
+if (!empty($toolbrand)) {
+	$whereclause .= "AND ToolBrand='".$toolbrand . "' ";
+}
+else{
+	$whereclause .= "AND ToolBrand LIKE '%' ";
+}
+//echo $whereclause;
 if (empty($name)){
   $result=mysqli_query($conn,"SELECT ImgFileLoc,ToolName,ToolType,ToolBrand,ToolCondition,ToolState
-    FROM Tools ");
+    FROM Tools ".$whereclause);
 } else {
   $result=mysqli_query($conn,"SELECT ImgFileLoc,ToolName,ToolType,ToolBrand,ToolCondition,ToolState
     FROM Tools INNER JOIN RegUsers on RegUsers_OriginalUser = idRegisteredUsers

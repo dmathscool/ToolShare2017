@@ -1,6 +1,9 @@
-function populateToolnameDropdown() {
+function populateToolnameDropdown(addblankrow) {
 		$.post("../DatabaseRelated/gettoolname.php", 
     	function(data) {
+			if (addblankrow != 0) {
+				    $(".filtertoolname").append('<option value=""></option>');
+			}
 			if( data != '' ) {
 				var toolnames = JSON.parse(data);
 
@@ -18,9 +21,12 @@ function populateToolnameDropdown() {
 	);
 }
 
-function populateTooltypeDropdown() {
+function populateTooltypeDropdown(addblankrow) {
 		$.post("../DatabaseRelated/gettooltype.php", 
     	function(data) {
+			if (addblankrow != 0) {
+				    $(".filtertooltype").append('<option value=""></option>');
+			}
 			if( data != '' ) {
 				// TODO need to loop through all data here
 				var tooltypes = JSON.parse(data);
@@ -40,9 +46,12 @@ function populateTooltypeDropdown() {
 
 }
 
-function populateBrandDropdown() {
+function populateBrandDropdown(addblankrow) {
 		$.post("../DatabaseRelated/gettoolbrand.php", 
     	function(data) {
+			if (addblankrow != 0) {
+				    $(".filterbrand").append('<option value=""></option>');
+			}
 			if( data != '' ) {
 				var toolbrands = JSON.parse(data);
 
@@ -60,9 +69,12 @@ function populateBrandDropdown() {
 	);
 }
 
-function populateConditionDropdown() {
+function populateConditionDropdown(addblankrow) {
 		$.post("../DatabaseRelated/gettoolcondition.php", 
     	function(data) {
+			if (addblankrow != 0) {
+				    $(".filtercondition").append('<option value=""></option>');
+			}
 			if( data != '' ) {
 				// TODO need to loop through all data here
 				var toolconditions = JSON.parse(data);
@@ -83,5 +95,49 @@ function populateConditionDropdown() {
 }
 
 function filterStuff() {
+	// DMM - copied from buildtools.js - probably a better way
+	//query the db and rebuild the table
+	//TABLE BUILDING SUPER QUICK AND DIRTY....
+	if (loggedInAs() == ''){
+		allowBorrow=false;
+	} else {
+		allowBorrow=true;
+	}
+	var condition = document.getElementById('toolcondition').value;
+	var name= document.getElementById('toolname').value;
+	var brand= document.getElementById('toolbrand').value;
+	var type= document.getElementById('tooltype').value;
+	$("#databaseTools tr").remove(); //Clear the table to rebuild
+	$.post("../DatabaseRelated/get_tools.php", {username:"", toolcondition:condition,toolname:name,tooltype:type,toolbrand:brand},
+    	function(data) {
+			if( data != '' ) {
+				var toolinfo = JSON.parse(data);
+
+				for (var i = 0; i<toolinfo.length; i++) {
+					var thisTool = toolinfo[i];
+					var row$=$('<tr/>');
+					for (var key in thisTool) {
+						var thisVal=thisTool[key];
+						if (thisVal==null){thisVal=""};
+						row$.append($('<td/>').html(thisVal));
+						//this prints each entry as
+						//image file,tool name,tool type, tool brand, tool condition, tool status (int)
+					}
+					//probably an a w f u l way to do this.
+					if (allowBorrow){
+					row$.append($('<td/>').html(
+						"<input onclick=\"borrowTool()\" type=\"submit\" value=\"Borrow\" id=\"" + i.toString() + "\">"));
+					} else {
+						row$.append($('<td/>').html("Register to Borrow!"));
+					}
+					$("#databaseTools").append(row$);
+				}
+			}
+			else {
+				console.log("something went awry")
+			}
+		}
+	);
+
     
 }

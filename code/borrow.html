@@ -39,7 +39,7 @@
   </style>
 
  </head>
-<body onload="initMenu(); populateToolnameDropdown(); populateTooltypeDropdown(); populateBrandDropdown(); populateConditionDropdown()">
+<body onload="initMenu(); populateToolnameDropdown(1); populateTooltypeDropdown(1); populateBrandDropdown(1); populateConditionDropdown(1)">
 
 <nav class="navbar navbar-light bg-faded navbar-fixed-top">
 
@@ -75,7 +75,7 @@
             <td><input onclick="borrowTool()" type="submit" value="Borrow" id="submit"></td> </tr>
 //-->
   <table>
-  <tr> <td><!--img--></td><td><select class="filtertoolname"></select></td><td><select class="filtertooltype"></select></td><td><select class="filterbrand"></select></td><td><select class="filtercondition"></select></td>
+  <tr> <td><!--img--></td><td><select class="filtertoolname" id="toolname"></select></td><td><select class="filtertooltype"  id="tooltype"></select></td><td><select class="filterbrand" id="toolbrand"></select></td><td><select class="filtercondition" id="toolcondition"></select></td>
             <td><input onclick="filterStuff()" type="submit" value="FilterResults" id="submit"></td> </tr>
   </table>
 

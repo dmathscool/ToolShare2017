@@ -39,7 +39,7 @@
   </style>
 
  </head>
-<body onload="initMenu()">
+<body onload="initMenu();populateTooltypeDropdown(0);populateConditionDropdown(0)">
 
 <nav class="navbar navbar-light bg-faded navbar-fixed-top">
   <div>
@@ -79,9 +79,9 @@
   //-->
     <td><!--img--></td>
     <td><input type="text" name="toolname" id="toolname"></td>
-    <td><input type="text" name="tooltype" id="tooltype"></td>
+    <td><select class="filtertooltype"  id="tooltype"></select></td>
     <td><input type="text" name="toolbrand" id="toolbrand"></td>
-    <td><input type="text" name="toolcondition" id="toolcondition"></td>
+    <td><select class="filtercondition" id="toolcondition"></select></td>
     <td><!--status--></td>
             <td><input onclick="createTool()" type="submit" value="Add" id="submit"></td> </tr>
 </table>

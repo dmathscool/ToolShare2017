@@ -2,7 +2,7 @@ $(document).ready(function(){
 
 	//query the db and build the table
 	//TABLE BUILDING SUPER QUICK AND DIRTY....
-	$.post("../DatabaseRelated/get_tools.php", {username:loggedInAs()},
+	$.post("../DatabaseRelated/get_tools.php", {username:loggedInAs(),toolname:"",tooltype:"",toolcondition:"",toolbrand:""},
     	function(data) {
 			if( data != '' ) {
 				var toolinfo = JSON.parse(data);

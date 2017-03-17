@@ -8,7 +8,7 @@ $(document).ready(function(){
 		allowBorrow=true;
 	}
 
-	$.post("../DatabaseRelated/get_tools.php", {username:""},
+	$.post("../DatabaseRelated/get_tools.php", {username:"",toolname:"",tooltype:"",toolcondition:"",toolbrand:""},
     	function(data) {
 			if( data != '' ) {
 				var toolinfo = JSON.parse(data);

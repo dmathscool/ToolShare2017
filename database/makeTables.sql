@@ -28,6 +28,16 @@ CREATE TABLE IF NOT EXISTS `magic947_toolshare`.`RegUsers` (
   PRIMARY KEY (`idRegisteredUsers`))
 ENGINE = InnoDB;
 
+-- -----------------------------------------------------
+-- Table `magic947_toolshare`.`toolcondition`
+-- -----------------------------------------------------
+CREATE TABLE IF NOT EXISTS `magic947_toolshare`.`toolcondition` (
+  `idCondition` INT(11) NOT NULL AUTO_INCREMENT,
+  `ToolCondition` VARCHAR(45) NULL DEFAULT NULL,
+  PRIMARY KEY (`idCondition`),
+  UNIQUE INDEX `ToolCondition` (`ToolCondition` ASC))
+ENGINE = InnoDB
+DEFAULT CHARACTER SET = utf8;
 
 -- -----------------------------------------------------
 -- Table `magic947_toolshare`.`Tools`
@@ -57,6 +67,17 @@ CREATE TABLE IF NOT EXISTS `magic947_toolshare`.`Tools` (
     ON UPDATE NO ACTION)
 ENGINE = InnoDB;
 
+
+-- -----------------------------------------------------
+-- Table `magic947_toolshare`.`tooltype`
+-- -----------------------------------------------------
+CREATE TABLE IF NOT EXISTS `magic947_toolshare`.`tooltype` (
+  `idToolType` INT(11) NOT NULL AUTO_INCREMENT,
+  `ToolType` VARCHAR(50) NULL DEFAULT NULL,
+  PRIMARY KEY (`idToolType`),
+  UNIQUE INDEX `ToolType` (`ToolType` ASC))
+ENGINE = InnoDB
+DEFAULT CHARACTER SET = utf8;
 
 -- -----------------------------------------------------
 -- Table `magic947_toolshare`.`TransactionHistory`

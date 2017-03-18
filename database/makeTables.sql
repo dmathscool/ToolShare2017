@@ -40,21 +40,37 @@ ENGINE = InnoDB
 DEFAULT CHARACTER SET = utf8;
 
 -- -----------------------------------------------------
+-- Table `magic947_toolshare`.`ToolLoanState`
+-- -----------------------------------------------------
+CREATE TABLE IF NOT EXISTS `magic947_toolshare`.`ToolLoanState` (
+  `idToolLoanState` INT NOT NULL AUTO_INCREMENT,
+  `ToolLoanName` VARCHAR(45) NOT NULL,
+  PRIMARY KEY (`idToolLoanState`))
+ENGINE = InnoDB;
+
+INSERT INTO `ToolLoanState` (`idToolLoanState`, `ToolLoanName`) VALUES
+(1,'Available'),
+(2,'Loan Requested'),
+(3,'On Loan'),
+(4,'Returned');
+
+-- -----------------------------------------------------
 -- Table `magic947_toolshare`.`Tools`
 -- -----------------------------------------------------
 CREATE TABLE IF NOT EXISTS `magic947_toolshare`.`Tools` (
   `idTool` INT NOT NULL AUTO_INCREMENT,
   `RegUsers_OriginalUser` INT NOT NULL,
-  `RegUsers_CurrentUser` INT NULL,
-  `ToolState` INT NULL DEFAULT 0,
-  `ToolName` VARCHAR(200) NULL,
-  `ToolType` VARCHAR(50) NULL,
-  `ToolBrand` VARCHAR(50) NULL,
-  `ToolCondition` VARCHAR(45) NULL,
-  `ImgFileLoc` VARCHAR(200) NULL,
+  `RegUsers_CurrentUser` INT NULL DEFAULT NULL,
+  `ToolState` INT NOT NULL DEFAULT 1,
+  `ToolName` VARCHAR(200) NULL DEFAULT NULL,
+  `ToolType` VARCHAR(50) NULL DEFAULT NULL,
+  `ToolBrand` VARCHAR(50) NULL DEFAULT NULL,
+  `ToolCondition` VARCHAR(45) NULL DEFAULT NULL,
+  `ImgFileLoc` VARCHAR(200) NULL DEFAULT NULL,
   PRIMARY KEY (`idTool`),
   INDEX `fk_Tools_RegUsers_idx` (`RegUsers_OriginalUser` ASC),
   INDEX `fk_Tools_RegUsers1_idx` (`RegUsers_CurrentUser` ASC),
+  INDEX `fk_Tools_ToolState_idx` (`ToolState` ASC),
   CONSTRAINT `fk_Tools_RegUsers_OG`
     FOREIGN KEY (`RegUsers_OriginalUser`)
     REFERENCES `magic947_toolshare`.`RegUsers` (`idRegisteredUsers`)
@@ -64,9 +80,25 @@ CREATE TABLE IF NOT EXISTS `magic947_toolshare`.`Tools` (
     FOREIGN KEY (`RegUsers_CurrentUser`)
     REFERENCES `magic947_toolshare`.`RegUsers` (`idRegisteredUsers`)
     ON DELETE NO ACTION
+    ON UPDATE NO ACTION,
+  CONSTRAINT `fk_Tools_ToolState`
+    FOREIGN KEY (`ToolState`)
+    REFERENCES `magic947_toolshare`.`ToolLoanState` (`idToolLoanState`)
+    ON DELETE NO ACTION
     ON UPDATE NO ACTION)
 ENGINE = InnoDB;
 
+
+-- -----------------------------------------------------
+-- Table `magic947_toolshare`.`tooltype`
+-- -----------------------------------------------------
+CREATE TABLE IF NOT EXISTS `magic947_toolshare`.`tooltype` (
+  `idToolType` INT(11) NOT NULL AUTO_INCREMENT,
+  `ToolType` VARCHAR(50) NULL DEFAULT NULL,
+  PRIMARY KEY (`idToolType`),
+  UNIQUE INDEX `ToolType` (`ToolType` ASC))
+ENGINE = InnoDB
+DEFAULT CHARACTER SET = utf8;
 
 -- -----------------------------------------------------
 -- Table `magic947_toolshare`.`tooltype`

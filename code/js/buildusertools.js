@@ -11,15 +11,18 @@ $(document).ready(function(){
 					var thisTool = toolinfo[i];
 					var row$=$('<tr/>');
 					for (var key in thisTool) {
-						var thisVal=thisTool[key];
-						if (thisVal==null){thisVal=""};
-						row$.append($('<td/>').html(thisVal));
+						if (key != 'idTool'){
+							var thisVal=thisTool[key];
+							if (thisVal==null){thisVal=""};
+							row$.append($('<td/>').html(thisVal));
+						}
 						//this prints each entry as
 						//image file,tool name,tool type, tool brand, tool condition, tool status (int)
 					}
 					//probably an a w f u l way to do this.
+					var thisToolId= thisTool['idTool'];
 					row$.append($('<td/>').html(
-						"<input onclick=\"editTool()\" type=\"submit\" value=\"Edit\" id=\"" + i.toString() + "\">"));
+						"<input onclick=\"editTool()\" type=\"submit\" value=\"Edit\" id=\"" + thisToolId.toString() + "\">"));
 					$("#databaseTools").append(row$);
 				}
 			}

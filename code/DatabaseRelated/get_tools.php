@@ -38,10 +38,10 @@ else{
 }
 //echo $whereclause;
 if (empty($name)){
-  $result=mysqli_query($conn,"SELECT ImgFileLoc,ToolName,ToolType,ToolBrand,ToolCondition,ToolState
+  $result=mysqli_query($conn,"SELECT ImgFileLoc,ToolName,ToolType,ToolBrand,ToolCondition,ToolState,idTool
     FROM Tools ".$whereclause);
 } else {
-  $result=mysqli_query($conn,"SELECT ImgFileLoc,ToolName,ToolType,ToolBrand,ToolCondition,ToolState
+  $result=mysqli_query($conn,"SELECT ImgFileLoc,ToolName,ToolType,ToolBrand,ToolCondition,ToolState,idTool
     FROM Tools INNER JOIN RegUsers on RegUsers_OriginalUser = idRegisteredUsers
     WHERE username = '$name'");
 

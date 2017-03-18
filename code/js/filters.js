@@ -1,5 +1,5 @@
 function populateToolnameDropdown(addblankrow) {
-		$.post("../DatabaseRelated/gettoolname.php", 
+		$.post("../DatabaseRelated/gettoolname.php",
     	function(data) {
 			if (addblankrow != 0) {
 				    $(".filtertoolname").append('<option value=""></option>');
@@ -15,14 +15,14 @@ function populateToolnameDropdown(addblankrow) {
 			}
 			else {
 				console.log("problem looking up tool names");
-				// some error stuff here. 
+				// some error stuff here.
 			}
 		}
 	);
 }
 
 function populateTooltypeDropdown(addblankrow) {
-		$.post("../DatabaseRelated/gettooltype.php", 
+		$.post("../DatabaseRelated/gettooltype.php",
     	function(data) {
 			if (addblankrow != 0) {
 				    $(".filtertooltype").append('<option value=""></option>');
@@ -39,7 +39,7 @@ function populateTooltypeDropdown(addblankrow) {
 			}
 			else {
 				console.log("problem looking up tool types");
-				// some error stuff here. 
+				// some error stuff here.
 			}
 		}
 	);
@@ -47,7 +47,7 @@ function populateTooltypeDropdown(addblankrow) {
 }
 
 function populateBrandDropdown(addblankrow) {
-		$.post("../DatabaseRelated/gettoolbrand.php", 
+		$.post("../DatabaseRelated/gettoolbrand.php",
     	function(data) {
 			if (addblankrow != 0) {
 				    $(".filterbrand").append('<option value=""></option>');
@@ -63,14 +63,14 @@ function populateBrandDropdown(addblankrow) {
 			}
 			else {
 				console.log("problem looking up tool names");
-				// some error stuff here. 
+				// some error stuff here.
 			}
 		}
 	);
 }
 
 function populateConditionDropdown(addblankrow) {
-		$.post("../DatabaseRelated/gettoolcondition.php", 
+		$.post("../DatabaseRelated/gettoolcondition.php",
     	function(data) {
 			if (addblankrow != 0) {
 				    $(".filtercondition").append('<option value=""></option>');
@@ -87,7 +87,7 @@ function populateConditionDropdown(addblankrow) {
 			}
 			else {
 				console.log("problem looking up conditions");
-				// some error stuff here. 
+				// some error stuff here.
 			}
 		}
 	);
@@ -117,16 +117,19 @@ function filterStuff() {
 					var thisTool = toolinfo[i];
 					var row$=$('<tr/>');
 					for (var key in thisTool) {
-						var thisVal=thisTool[key];
-						if (thisVal==null){thisVal=""};
-						row$.append($('<td/>').html(thisVal));
+						if (key != 'idTool'){
+							var thisVal=thisTool[key];
+							if (thisVal==null){thisVal=""};
+							row$.append($('<td/>').html(thisVal));
+						}
 						//this prints each entry as
 						//image file,tool name,tool type, tool brand, tool condition, tool status (int)
 					}
 					//probably an a w f u l way to do this.
 					if (allowBorrow){
-					row$.append($('<td/>').html(
-						"<input onclick=\"borrowTool()\" type=\"submit\" value=\"Borrow\" id=\"" + i.toString() + "\">"));
+						var thisToolId= thisTool['idTool'];
+						row$.append($('<td/>').html(
+							"<input onclick=\"borrowTool()\" type=\"submit\" value=\"Borrow\" id=\"" + thisToolId.toString() + "\">"));
 					} else {
 						row$.append($('<td/>').html("Register to Borrow!"));
 					}
@@ -139,5 +142,5 @@ function filterStuff() {
 		}
 	);
 
-    
+
 }

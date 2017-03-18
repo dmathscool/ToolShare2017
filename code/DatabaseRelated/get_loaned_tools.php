@@ -14,8 +14,9 @@ $result = mysqli_query($conn,"SELECT idRegisteredUsers FROM RegUsers WHERE
 $username=$result->fetch_assoc();
 $username= $username["idRegisteredUsers"];
 
-$result=mysqli_query($conn,"SELECT ImgFileLoc,ToolName,ToolType,ToolBrand,ToolCondition,ToolState,idTool
+$result=mysqli_query($conn,"SELECT ImgFileLoc,ToolName,ToolType,ToolBrand,ToolCondition,ToolLoanName,idTool
 	FROM Tools
+	INNER JOIN RegUsers on RegUsers_OriginalUser = idRegisteredUsers
 	WHERE (RegUsers_OriginalUser = ' $username ' AND RegUsers_CurrentUser IS NOT NULL)
 	OR (RegUsers_CurrentUser = '$username')";
 

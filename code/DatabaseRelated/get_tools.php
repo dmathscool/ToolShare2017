@@ -38,11 +38,15 @@ else{
 }
 //echo $whereclause;
 if (empty($name)){
-  $result=mysqli_query($conn,"SELECT ImgFileLoc,ToolName,ToolType,ToolBrand,ToolCondition,ToolState,idTool
-    FROM Tools ".$whereclause);
+  $result=mysqli_query($conn,"SELECT ImgFileLoc,ToolName,ToolType,ToolBrand,ToolCondition,ToolLoanName,idTool
+    FROM Tools
+		INNER JOIN ToolLoanState on idToolLoanState = ToolState
+		".$whereclause);
 } else {
-  $result=mysqli_query($conn,"SELECT ImgFileLoc,ToolName,ToolType,ToolBrand,ToolCondition,ToolState,idTool
-    FROM Tools INNER JOIN RegUsers on RegUsers_OriginalUser = idRegisteredUsers
+  $result=mysqli_query($conn,"SELECT ImgFileLoc,ToolName,ToolType,ToolBrand,ToolCondition,ToolLoanName,idTool
+    FROM Tools
+		INNER JOIN RegUsers on RegUsers_OriginalUser = idRegisteredUsers
+		INNER JOIN ToolLoanState on idToolLoanState = ToolState
     WHERE username = '$name'");
 
 }

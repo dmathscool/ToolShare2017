@@ -13,7 +13,7 @@ $toolbrand=$_POST['toolbrand'];
 //build up the where clause if any of the search fields are populated
 $whereclause = "WHERE ";
 if (!empty($toolname)) {
-	$whereclause .= "ToolName LIKE '"+$toolname . "' ";
+	$whereclause .= "ToolName LIKE '".$toolname . "' ";
 }
 else{
 	$whereclause .= "ToolName LIKE '%' ";

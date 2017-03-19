@@ -9,37 +9,5 @@ $(document).ready(function(){
 	}
 
 	$.post("../DatabaseRelated/get_tools.php", {username:"",toolname:"",tooltype:"",toolcondition:"",toolbrand:""},
-    	function(data) {
-			if( data != '' ) {
-				var toolinfo = JSON.parse(data);
-
-				for (var i = 0; i<toolinfo.length; i++) {
-					var thisTool = toolinfo[i];
-					var row$=$('<tr/>');
-					for (var key in thisTool) {
-						if (key != 'idTool'){
-							var thisVal=thisTool[key];
-							if (thisVal==null){thisVal=""};
-							row$.append($('<td/>').html(thisVal));
-						}
-						//this prints each entry as
-						//image file,tool name,tool type, tool brand, tool condition, tool status (int)
-					}
-					//probably an a w f u l way to do this.
-					if (allowBorrow){
-						var thisToolId= thisTool['idTool'];
-						row$.append($('<td/>').html(
-							"<input onclick=\"borrowTool()\" type=\"submit\" value=\"Borrow\" id=\"" + thisToolId.toString() + "\">"));
-					} else {
-						row$.append($('<td/>').html("Register to Borrow!"));
-					}
-					$("#databaseTools").append(row$);
-				}
-			}
-			else {
-				console.log("something went awry")
-			}
-		}
-	);
-
+    	function(data) {popluateToolsTable(data);});
 });

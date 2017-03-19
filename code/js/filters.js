@@ -93,9 +93,39 @@ function populateConditionDropdown(addblankrow) {
 	);
 
 }
+function popluateToolsTable(data) {
+	if( data != '' ) {
+		var toolinfo = JSON.parse(data);
 
+		for (var i = 0; i<toolinfo.length; i++) {
+			var thisTool = toolinfo[i];
+			var row$=$('<tr/>');
+			for (var key in thisTool) {
+				if (key != 'idTool'){
+					var thisVal=thisTool[key];
+					if (thisVal==null){thisVal=""};
+					row$.append($('<td/>').html(thisVal));
+				}
+				//this prints each entry as
+				//image file,tool name,tool type, tool brand, tool condition, tool status (int)
+			}
+			//probably an a w f u l way to do this.
+			if (allowBorrow){
+				var thisToolId= thisTool['idTool'];
+				row$.append($('<td/>').html(
+					"<input onclick=\"borrowTool()\" type=\"submit\" value=\"Borrow\" id=\"" + thisToolId.toString() + "\">"));
+			} else {
+				row$.append($('<td/>').html("Register to Borrow!"));
+			}
+			$("#databaseTools").append(row$);
+		}
+	}
+	else {
+		console.log("something went awry")
+	}
+
+}
 function filterStuff() {
-	// DMM - copied from buildtools.js - probably a better way
 	//query the db and rebuild the table
 	//TABLE BUILDING SUPER QUICK AND DIRTY....
 	if (loggedInAs() == ''){
@@ -108,43 +138,9 @@ function filterStuff() {
 	var type= document.getElementById('tooltype').value;
 	$("#databaseTools tr").remove(); //Clear the table to rebuild
 	$.post("../DatabaseRelated/get_tools.php", {username:"", toolcondition:condition,toolname:"",tooltype:type,toolbrand:brand},
-    	function(data) {
-			if( data != '' ) {
-				var toolinfo = JSON.parse(data);
-
-				for (var i = 0; i<toolinfo.length; i++) {
-					var thisTool = toolinfo[i];
-					var row$=$('<tr/>');
-					for (var key in thisTool) {
-						if (key != 'idTool'){
-							var thisVal=thisTool[key];
-							if (thisVal==null){thisVal=""};
-							row$.append($('<td/>').html(thisVal));
-						}
-						//this prints each entry as
-						//image file,tool name,tool type, tool brand, tool condition, tool status (int)
-					}
-					//probably an a w f u l way to do this.
-					if (allowBorrow){
-						var thisToolId= thisTool['idTool'];
-						row$.append($('<td/>').html(
-							"<input onclick=\"borrowTool()\" type=\"submit\" value=\"Borrow\" id=\"" + thisToolId.toString() + "\">"));
-					} else {
-						row$.append($('<td/>').html("Register to Borrow!"));
-					}
-					$("#databaseTools").append(row$);
-				}
-			}
-			else {
-				console.log("something went awry")
-			}
-		}
-	);
-
-
+    	function(data) {popluateToolsTable(data);});
 }
 function searchKeyword() {
-	// DMM - TODO - need to consoldiate the table build routine - it is all the same code
 	if (loggedInAs() == ''){
 		allowBorrow=false;
 	} else {
@@ -153,38 +149,7 @@ function searchKeyword() {
 	var keyword = document.getElementById('searchkeyword').value;
 	$("#databaseTools tr").remove(); //Clear the table to rebuild
 	$.post("../DatabaseRelated/get_tools_keyword.php", {searchkeyword:keyword},
-    	function(data) {
-			if( data != '' ) {
-				var toolinfo = JSON.parse(data);
-
-				for (var i = 0; i<toolinfo.length; i++) {
-					var thisTool = toolinfo[i];
-					var row$=$('<tr/>');
-					for (var key in thisTool) {
-						if (key != 'idTool'){
-							var thisVal=thisTool[key];
-							if (thisVal==null){thisVal=""};
-							row$.append($('<td/>').html(thisVal));
-						}
-						//this prints each entry as
-						//image file,tool name,tool type, tool brand, tool condition, tool status (int)
-					}
-					//probably an a w f u l way to do this.
-					if (allowBorrow){
-						var thisToolId= thisTool['idTool'];
-						row$.append($('<td/>').html(
-							"<input onclick=\"borrowTool()\" type=\"submit\" value=\"Borrow\" id=\"" + thisToolId.toString() + "\">"));
-					} else {
-						row$.append($('<td/>').html("Register to Borrow!"));
-					}
-					$("#databaseTools").append(row$);
-				}
-			}
-			else {
-				console.log("something went awry")
-			}
-		}
-	);
+    	function(data) {popluateToolsTable(data);});
 
 
 }

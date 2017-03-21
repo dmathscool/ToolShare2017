@@ -1,7 +1,18 @@
 // this will probably need a parameter to indicate the item
-function borrowTool() {
+function borrowTool(clicked_id) {
     if( isLoggedIn() ) {
-        alert("Tool is yours! You are free to break it");
+		var username = loggedInAs();
+		var borrowtoolId=clicked_id;
+
+		$.post("../DatabaseRelated/borrow_tool.php",
+			{borrowingUser:username,toolId:borrowtoolId,newToolState:"Loan Requested"},
+			function(data) {
+				 if (data == "SUCCESS"){
+					 //alert("Borrow Success");
+					 window.location.reload();
+				 } else {
+					 alert("Borrow Failed: " + data);
+			}})
     }
     else {
         alert("Please log in to borrow a tool.");

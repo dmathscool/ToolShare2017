@@ -110,12 +110,18 @@ function popluateToolsTable(data) {
 				//image file,tool name,tool type, tool brand, tool condition, tool status (int)
 			}
 			//probably an a w f u l way to do this.
-			if (allowBorrow){
+			var thistoolstate = thisTool['ToolLoanName'];
+			if (!allowBorrow) {
+				row$.append($('<td/>').html("Register to Borrow!"));
+			}
+			else if (thistoolstate == "Available"){
+
 				var thisToolId= thisTool['idTool'];
 				row$.append($('<td/>').html(
-					"<input onclick=\"borrowTool()\" type=\"submit\" value=\"Borrow\" id=\"" + thisToolId.toString() + "\">"));
-			} else {
-				row$.append($('<td/>').html("Register to Borrow!"));
+					"<input onclick=\"borrowTool(this.id)\" type=\"submit\" value=\"Borrow\" id=\"" + thisToolId.toString() + "\">"));
+			} 
+			else {
+				row$.append($('<td/>').html(""));
 			}
 			$("#databaseTools").append(row$);
 		}

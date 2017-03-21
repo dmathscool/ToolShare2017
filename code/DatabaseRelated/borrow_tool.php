@@ -7,7 +7,7 @@ $conn=mysqli_connect("localhost","magic947_arthur","sweng987$$$","magic947_tools
 
 $borrowingUser=$_POST['borrowingUser'];
 $toolId=intval($_POST['toolId']);
-$newState=$_POST['newToolState']
+$newState=$_POST['newToolState'];
 
 if ($newState == "Available"){
   //this represents going from Returned -> Available, here we increment the state
@@ -48,7 +48,7 @@ elseif ($newState =="Loan Requested") {
 }
 
 if ($result) {
-  echo "SUCCED";
+  echo "SUCCESS";
 }
 else {
   echo "FAIL";

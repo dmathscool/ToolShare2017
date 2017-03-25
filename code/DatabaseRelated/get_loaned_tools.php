@@ -10,7 +10,7 @@ $name=$_POST['username'];
 //so we want to find all tools such that the original user == us AND current user == not null
 //AND current_user == us
 $result = mysqli_query($conn,"SELECT idRegisteredUsers FROM RegUsers WHERE
-										  username = '$name' ")
+										  username = '$name' ");
 $username=$result->fetch_assoc();
 $username= $username["idRegisteredUsers"];
 
@@ -20,12 +20,13 @@ $result=mysqli_query($conn,"SELECT ImgFileLoc,ToolName,ToolType,ToolBrand,ToolCo
 	INNER JOIN ToolLoanState ON idToolLoanState=Toolstate
 	INNER JOIN RegUsers on RegUsers_OriginalUser = idRegisteredUsers
 	WHERE (RegUsers_OriginalUser = ' $username ' AND RegUsers_CurrentUser IS NOT NULL)
-	OR (RegUsers_CurrentUser = '$username')";
+	OR (RegUsers_CurrentUser = '$username')");
 $numRows= $result->num_rows;
 $to_encode = array();
 while( $row = $result->fetch_assoc() ) {
 	  $to_encode[] = $row;
 }
+
 $jsonString = json_encode($to_encode);
 if (($jsonString)==FALSE) {
 	  echo '';

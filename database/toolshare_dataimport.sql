@@ -1,6 +1,6 @@
 -- Default Data for ToolShare Database
 
-INSERT INTO `regusers` (`idRegisteredUsers`, `username`, `password`, `email`, `rating`, `zipcode`, `numRatings`) VALUES
+INSERT INTO `RegUsers` (`idRegisteredUsers`, `username`, `password`, `email`, `rating`, `zipcode`, `numRatings`) VALUES
 (2, 'dmath', 'Danielle', 'dmath@bu.edu', 3.6667, '01773', 3),
 (3, 'Tim', 'toolman', 'tim@toolman.com', 3.0000, '90210', 1),
 (4, 'Bob', 'villa', 'bob@thisoldhouse.com', 3.0000, '10791', 1);
@@ -21,7 +21,7 @@ INSERT INTO `tooltype` (`idToolType`, `ToolType`) VALUES
 (3, 'Lawn Tool'),
 (2, 'Power Tool');
 
-INSERT INTO `tools` (`idTool`, `RegUsers_OriginalUser`, `RegUsers_CurrentUser`, `ToolState`, `ToolName`, `ToolType`, `ToolBrand`, `ToolCondition`, `ImgFileLoc`) VALUES
+INSERT INTO `Tools` (`idTool`, `RegUsers_OriginalUser`, `RegUsers_CurrentUser`, `ToolState`, `ToolName`, `ToolType`, `ToolBrand`, `ToolCondition`, `ImgFileLoc`) VALUES
 (2, 2, NULL, 1, '1/2\" Crescent wrench', 'Hand Tool', 'Craftsman', 'Good', ''),
 (3, 2, NULL, 1, 'potato ricer', 'Cooking Tool', 'Oxo', 'Outstanding', ''),
 (4, 2, NULL, 1, 'sawzall', 'Power Tool', 'Milwalkee', 'Decent', ''),

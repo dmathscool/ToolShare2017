@@ -103,24 +103,6 @@
             <td><input onclick="editTool()" type="submit" value="Next Step" id="submit"></td> </tr>  
 </table>
 
-<div>
-  <b>Notes:</b><br>
-  I have implemented separate tables for your owned items and items you are borrowing. Otherwise we have to come up with some way to indicate, for example,<br>
-  whether a tool is on loan to you or you have loaned it out.<br><br>
-
-  "Next step" on buttons should automatically show something more descriptive based on the item status.<br>
-  Suggesting items with status Requested show "Accept" on the button, Accepted shows "Deliver", On loan shows "Reclaim", Returned shows "Rate user"<br>
-  Not all items will necessarily need a button. Most of the ones on "their tools" probably won't. The tool owner will typically drive the workflow.<br>
-  The one exception I can think of is rating the loaning user after you have returned their item.<br><br>
-  
-  When the loaning user accepts the request, there are probably two simplest ways to handle the hand off:<br>
-  1) system automatically emails both users a notice that says, for example:<br>
-  "tool X is ready to trade. owner: Bob Jones (bjones@gmail.com). borrower: Susan Smith (ssmith@yahoo.com). coordinate, hand off, and mark the tool loaned"<br>
-  2) a notes field in the transaction list shows e-mail address of the other user with the intent that the users just e-mail each other to coordinate handoff.<br><br>
-
-  We also need an expiration date column<br>
-</div>
-
   <script src="https://ajax.googleapis.com/ajax/libs/jquery/2.1.4/jquery.min.js"></script>
   <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0-alpha.2/js/bootstrap.min.js"
           integrity="sha384-vZ2WRJMwsjRMW/8U7i6PWi6AlO1L79snBrmgiDpgIWJ82z8eA5lenwvxbMV1PAh7"
@@ -131,6 +113,7 @@
 <script type="text/javascript" src="js/menu.js"></script>
 <script type="text/javascript" src="js/filters.js"></script>
 <script type="text/javascript" src="js/tool.js"></script>
+<script type="text/javascript" src="js/buildtransactions.js"></script>
 
 </body>
 </html>

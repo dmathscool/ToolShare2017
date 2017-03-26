@@ -39,7 +39,7 @@
   </style>
 
  </head>
-<body onload="initMenu(); populateToolnameDropdown(1); populateTooltypeDropdown(1); populateBrandDropdown(1); populateConditionDropdown(1)">
+<body onload="initMenu();">
 
 <nav class="navbar navbar-light bg-faded navbar-fixed-top">
 
@@ -58,15 +58,10 @@
   <input type="text" name="Search Keyword" id="searchkeyword">
  <input onclick="searchKeyword()" type="submit" value="Search" id="searchkeywordbutton">
 </div>
-
+<br>
 <table id="databaseTools">
   <tr> <td><!--img--></td><td>Tool name</td><td>Tool type</td><td>Brand</td><td>Condition</td><td>Status</td><td><!--button--></td> </tr>
 </table>
-
-  <table>
-  <tr> <td><!--img--></td><td></td><td><select class="filtertooltype"  id="tooltype"></select></td><td><select class="filterbrand" id="toolbrand"></select></td><td><select class="filtercondition" id="toolcondition"></select></td>
-            <td><input onclick="filterStuff()" type="submit" value="Filter Results" id="submit"></td> </tr>
-  </table>
 
   <div>
     <b>Notes:</b><br>

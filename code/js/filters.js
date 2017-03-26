@@ -125,6 +125,14 @@ function popluateToolsTable(data) {
 			}
 			$("#databaseTools").append(row$);
 		}
+		var lastrow$ =  "<tr> <td><!--img--></td><td></td><td><select class=\"filtertooltype\"  \
+			id=\"tooltype\"></select></td><td><select class=\"filterbrand\" id=\"toolbrand\"> \
+			</select></td><td><select class=\"filtercondition\" id=\"toolcondition\"></select></td><td></td> \
+            <td><input onclick=\"filterStuff()\" type=\"submit\" value=\"Filter Results\" id=\"submit\"></td> </tr>"
+		$("#databaseTools").append(lastrow$);
+		populateTooltypeDropdown(1); 
+		populateBrandDropdown(1); 
+		populateConditionDropdown(1);
 	}
 	else {
 		console.log("something went awry")

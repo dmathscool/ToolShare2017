@@ -22,7 +22,8 @@ $(document).ready(function(){
 					//probably an a w f u l way to do this.
 					var thisToolId= thisTool['idTool'];
 					row$.append($('<td/>').html(
-						"<input onclick=\"editTool()\" type=\"submit\" value=\"Edit\" id=\"" + thisToolId.toString() + "\">"));
+						"<input onclick=\"editTool(this.id)\" type=\"submit\" value=\"Edit\" id=\"" + thisToolId.toString() + "\"> \
+						<input onclick=\"deleteTool(this.id)\" type=\"submit\" value=\"Delete\" id=\"" + thisToolId.toString() + "\">"));
 					$("#databaseTools").append(row$);
 				}
 			var lastrow$ =  "<tr> <td><!--img--></td> <td><input type=\"text\" name=\"toolname\" id=\"toolname\"></td> \

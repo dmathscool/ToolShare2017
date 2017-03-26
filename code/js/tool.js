@@ -19,9 +19,35 @@ function borrowTool(clicked_id) {
     }
 }
 
-// this will probably need a parameter to indicate the item
-function editTool() {
-    console.log("editing tool");
+// function to edit a tool based on id
+// TODO - probably needs to happen in two parts 
+// First part gives user edit access to tool stuff
+// Second part commits the edit to database
+function editTool(clicked_id) {
+	var toolName = document.getElementById('toolname'+clicked_id).value;
+    var toolType = document.getElementById('tooltype'+clicked_id).value;
+    var toolBrand = document.getElementById('toolbrand'+clicked_id).value;
+    var toolCondition = document.getElementById('toolcondition'+clicked_id).value;
+	$.post("../DatabaseRelated/editusertool.php",
+		{toolid:clicked_id,toolname:toolName,toolcondition:toolCondition,toolbrand:toolBrand,tooltype:toolType},
+		function(data) {
+			 if (data == "SUCCESS"){
+				 window.location.reload();
+			 } else {
+				 alert("Borrow Failed: " + data);
+		}})
+}
+
+// function to delete tool based on id
+function deleteTool(clicked_id) {
+	$.post("../DatabaseRelated/deleteusertool.php",
+		{toolid:clicked_id},
+		function(data) {
+			 if (data == "SUCCESS"){
+				 window.location.reload();
+			 } else {
+				 alert("Borrow Failed: " + data);
+		}})
 }
 
 function createTool() {

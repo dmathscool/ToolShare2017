@@ -150,8 +150,9 @@ function filterStuff() {
 	var condition = document.getElementById('toolcondition').value;
 	var brand= document.getElementById('toolbrand').value;
 	var type= document.getElementById('tooltype').value;
+	var keyword = document.getElementById('searchkeyword').value;
 	$("#databaseTools tr").remove(); //Clear the table to rebuild
-	$.post("../DatabaseRelated/get_tools.php", {username:"", toolcondition:condition,toolname:"",tooltype:type,toolbrand:brand},
+	$.post("../DatabaseRelated/get_tools.php", {username:"", toolcondition:condition,toolname:"",tooltype:type,toolbrand:brand,searchkeyword:keyword},
     	function(data) {popluateToolsTable(data);});
 }
 function searchKeyword() {
@@ -160,9 +161,12 @@ function searchKeyword() {
 	} else {
 		allowBorrow=true;
 	}
+	var condition = document.getElementById('toolcondition').value;
+	var brand= document.getElementById('toolbrand').value;
+	var type= document.getElementById('tooltype').value;
 	var keyword = document.getElementById('searchkeyword').value;
 	$("#databaseTools tr").remove(); //Clear the table to rebuild
-	$.post("../DatabaseRelated/get_tools_keyword.php", {searchkeyword:keyword},
+	$.post("../DatabaseRelated/get_tools.php", {username:"", toolcondition:condition,toolname:"",tooltype:type,toolbrand:brand,searchkeyword:keyword},
     	function(data) {popluateToolsTable(data);});
 
 

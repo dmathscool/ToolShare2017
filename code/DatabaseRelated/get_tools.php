@@ -10,6 +10,30 @@ $toolname=$_POST['toolname'];
 $tooltype=$_POST['tooltype'];
 $toolcondition=$_POST['toolcondition'];
 $toolbrand=$_POST['toolbrand'];
+$keyword=$_POST['searchkeyword'];
+//build up the inner query on search keyword
+$innerquery = "";
+if (!empty($keyword) && empty($name)) {
+	$innerquery = "(SELECT ImgFileLoc,ToolName,ToolType,ToolBrand,ToolCondition,ToolLoanName,idTool FROM Tools
+		INNER JOIN ToolLoanState on idToolLoanState = ToolState WHERE ToolName LIKE '%".$keyword . "%' 
+		OR ToolBrand LIKE '%".$keyword."%' OR ToolType LIKE '%".$keyword."%') AS iq ";
+}
+else if (!empty($keyword) && !empty($name)){
+	$innerquery = "(SELECT ImgFileLoc,ToolName,ToolType,ToolBrand,ToolCondition,ToolLoanName,idTool FROM Tools
+		INNER JOIN ToolLoanState on idToolLoanState = ToolState 
+		INNER JOIN RegUsers on RegUsers_OriginalUser = idRegisteredUsers
+		WHERE ToolName LIKE '%".$keyword . "%' 
+		OR ToolBrand LIKE '%".$keyword."%' OR ToolType LIKE '%".$keyword."%') AS iq ";
+}
+else if (empty($keyword) && empty($name)) {
+	$innerquery = "Tools INNER JOIN ToolLoanState on idToolLoanState = ToolState ";
+}
+else if (empty($keyword) && !empty($name)) {
+	$innerquery = "Tools INNER JOIN ToolLoanState on idToolLoanState = ToolState 
+		INNER JOIN RegUsers on RegUsers_OriginalUser = idRegisteredUsers ";
+}
+
+
 //build up the where clause if any of the search fields are populated
 $whereclause = "WHERE ";
 if (!empty($toolname)) {
@@ -39,15 +63,10 @@ else{
 //echo $whereclause;
 if (empty($name)){
   $result=mysqli_query($conn,"SELECT ImgFileLoc,ToolName,ToolType,ToolBrand,ToolCondition,ToolLoanName,idTool
-    FROM Tools
-		INNER JOIN ToolLoanState on idToolLoanState = ToolState
-		".$whereclause);
+    FROM ".$innerquery.$whereclause);
 } else {
   $result=mysqli_query($conn,"SELECT ImgFileLoc,ToolName,ToolType,ToolBrand,ToolCondition,ToolLoanName,idTool
-    FROM Tools
-		INNER JOIN RegUsers on RegUsers_OriginalUser = idRegisteredUsers
-		INNER JOIN ToolLoanState on idToolLoanState = ToolState
-    WHERE username = '$name'");
+    FROM ".$innerquery."WHERE username = '$name'");
 
 }
 

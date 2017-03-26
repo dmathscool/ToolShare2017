@@ -14,6 +14,7 @@ $username=$result->fetch_assoc();
 $username= $username["idRegisteredUsers"];
 
 $result=mysqli_query($conn,"SELECT ImgFileLoc,ToolName,ToolType,ToolBrand,ToolCondition,
+	IF(RegUsers_CurrentUser= '$username',username,(SELECT username FROM RegUsers WHERE RegUsers_CurrentUser=idRegisteredUsers )) as otherUser,
 	IF(RegUsers_CurrentUser= '$username',email,(SELECT email FROM RegUsers WHERE RegUsers_CurrentUser=idRegisteredUsers )) as thisEmail,
 	ToolLoanName,idTool
 	FROM Tools

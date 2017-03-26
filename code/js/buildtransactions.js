@@ -1,5 +1,71 @@
-function advanceTransactionState() {
-    console.log("oh yeah! advance it!")
+// input is the text name of the field to be changed.
+// this needs to match the id of the text box containing it (which should be "[name]field").
+// this also needs to match the name of the column in the database
+
+// function changeState() {
+// 	var username = document.getElementById('username').innerHTML;
+//     var newVal = document.getElementById(modifiedField+'field').value;
+
+//     $.post("../DatabaseRelated/updateuserfield.php",
+//             {name:username,field:modifiedField,newval:newVal},
+//             function(data){
+//               if (data == "Success"){
+// 				document.getElementById('updateresult').innerHTML = modifiedField + " successfully updated";
+//               }
+// 			  else {
+// 				document.getElementById('updateresult').innerHTML = "Error updating " + modifiedField + ": " + data;
+//               }
+//             })
+// }
+
+// parameter is state we want to transition to
+function advanceTransactionState(state) {
+    console.log("advance to state " + state);
+}
+
+// Yes, the hard-coded states in the next couple functions should be pulled from the tool state table or something
+// ...k
+function buttonHTML(textValue, id) {
+    var textNoSpaces = textValue.replace(/\s/g, '');
+
+    console.log(textValue);
+
+    var nextState;
+    if( textValue == "Accept" ) {
+        nextState = "On Loan";
+    }
+    else if( textValue == "Decline" ) {
+        nextState = "Available";
+    }
+    else if( textValue == "Returned" ) {
+        nextState = "Returned";
+    }
+    else if( textValue == "Accept return" ) {
+        nextState = "Rate User";
+    }
+    else {
+        nextState = "Hamburger";
+        console.log("missing button text");
+    }
+
+    var theHTML = "<input onclick=\"advanceTransactionState('" + nextState + "')\" type=\"submit\" value=\"" + textValue + "\" id=\"" + textNoSpaces + id.toString() + "\">";
+    console.log(theHTML);
+    return theHTML;
+}
+
+function getAdvanceButton(state, toolId) {
+    if( state == "Loan Requested" ) {
+        return buttonHTML("Accept", toolId) + "<br>" + buttonHTML("Decline", toolId);
+    }
+    else if( state == "On Loan" ) {
+        return buttonHTML("Returned", toolId);
+    }
+    else if( state == "Returned" ) {
+        return buttonHTML("Accept return", toolId);
+    }
+    else {
+        return buttonHTML("Missing State", toolId);
+    }
 }
 
 // Yes, these next two functions have a ton of copy/paste code.
@@ -28,8 +94,9 @@ function makeLoanedToolsTable() {
 					}
 					//probably an a w f u l way to do this.
                     var thisToolId= thisTool['idTool'];
+                    var thisToolState = thisTool['ToolLoanName'];
                     row$.append($('<td/>').html(
-                        "<input onclick=\"advanceTransactionState()\" type=\"submit\" value=\"[Next Step]\" id=\"" + thisToolId.toString() + "\">"));
+                        getAdvanceButton(thisToolState, thisToolId)));
 					$("#loanedTools").append(row$);
 				}
 			}
@@ -63,8 +130,9 @@ function makeBorrowedToolsTable() {
 					}
 					//probably an a w f u l way to do this.
                     var thisToolId= thisTool['idTool'];
+                    var thisToolState = thisTool['ToolLoanName'];
                     row$.append($('<td/>').html(
-                        "<input onclick=\"advanceTransactionState()\" type=\"submit\" value=\"[Next Step]\" id=\"" + thisToolId.toString() + "\">"));
+                        getAdvanceButton(thisToolState, thisToolId)));
 					$("#borrowedTools").append(row$);
 				}
 			}

@@ -7,7 +7,7 @@ $conn=mysqli_connect("localhost","magic947_arthur","sweng987$$$","magic947_tools
 
 $name=$_POST['username'];
 
-//so we want to find all tools such that the original user == us AND current user == not null
+//so we want to find all tools such that the current_user == us
 $result = mysqli_query($conn,"SELECT idRegisteredUsers FROM RegUsers WHERE
 										  username = '$name' ");
 $username=$result->fetch_assoc();
@@ -19,7 +19,7 @@ $result=mysqli_query($conn,"SELECT ImgFileLoc,ToolName,ToolType,ToolBrand,ToolCo
 	FROM Tools
 	INNER JOIN ToolLoanState ON idToolLoanState=Toolstate
 	INNER JOIN RegUsers on RegUsers_OriginalUser = idRegisteredUsers
-	WHERE (RegUsers_OriginalUser = ' $username ' AND RegUsers_CurrentUser IS NOT NULL)");
+	WHERE (RegUsers_CurrentUser = '$username')");
 $numRows= $result->num_rows;
 $to_encode = array();
 while( $row = $result->fetch_assoc() ) {

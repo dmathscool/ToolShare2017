@@ -2,25 +2,57 @@
 // this needs to match the id of the text box containing it (which should be "[name]field").
 // this also needs to match the name of the column in the database
 
-// function changeState() {
-// 	var username = document.getElementById('username').innerHTML;
-//     var newVal = document.getElementById(modifiedField+'field').value;
+function changeState(state, id) {
+    console.log("change state " + state + " " + id);
 
-//     $.post("../DatabaseRelated/updateuserfield.php",
-//             {name:username,field:modifiedField,newval:newVal},
-//             function(data){
-//               if (data == "Success"){
-// 				document.getElementById('updateresult').innerHTML = modifiedField + " successfully updated";
-//               }
-// 			  else {
-// 				document.getElementById('updateresult').innerHTML = "Error updating " + modifiedField + ": " + data;
-//               }
-//             })
-// }
+    var $newStateId = loanStateNumber(state);
 
-// parameter is state we want to transition to
-function advanceTransactionState(state) {
-    console.log("advance to state " + state);
+    console.log("changing tool state");
+    $.post("../DatabaseRelated/updatetoolfield.php",
+            {toolID:id,field:'ToolState',newval:$newStateId},
+            function(data){
+              if (data.startsWith("Success")){
+                  console.log("changed state with query " + data);
+              }
+			  else {
+				  console.log("failed to change tool state with query " + data);
+              }
+            });
+    
+    if( state == "Available" ) {
+        console.log("changing current user");
+        // we also need to set RegUsers_CurrentUser to NULL so this doesn't
+        // show up in people's transactions when it's not involved presently
+
+        $.post("../DatabaseRelated/updatetoolfield.php",
+            {toolID:id,field:'RegUsers_CurrentUser',newval:"NULL"},
+            function(data){
+              if (data.startsWith("Success")){
+                  console.log("changed current user to null with query " + data);
+              }
+			  else {
+				  console.log("failed to change current user with query " + data);
+              }
+            });
+    }
+}
+
+// state parameter is state we want to transition to
+function advanceTransactionState(state, id) {
+    console.log("advance tool " + id + " to state " + state);
+
+    if( state == "Returned" ) {
+        changeState("Returned", id);
+        // then ask user to rate the other user
+    }
+    if( state == "Rate User" ) {
+        changeState("Available", id);
+        // then ask user to rate the other user
+        //window.location.href = "rateuser.html?name=" + ;
+    }
+    else {
+        changeState(state, id);
+    }
 }
 
 // Yes, the hard-coded states in the next couple functions should be pulled from the tool state table or something
@@ -37,7 +69,7 @@ function buttonHTML(textValue, id) {
     else if( textValue == "Decline" ) {
         nextState = "Available";
     }
-    else if( textValue == "Returned" ) {
+    else if( textValue == "Return tool" ) {
         nextState = "Returned";
     }
     else if( textValue == "Accept return" ) {
@@ -48,7 +80,7 @@ function buttonHTML(textValue, id) {
         console.log("missing button text");
     }
 
-    var theHTML = "<input onclick=\"advanceTransactionState('" + nextState + "')\" type=\"submit\" value=\"" + textValue + "\" id=\"" + textNoSpaces + id.toString() + "\">";
+    var theHTML = "<input onclick=\"advanceTransactionState('" + nextState + "', " + id.toString() + ")\" type=\"submit\" value=\"" + textValue + "\" id=\"" + textNoSpaces + id.toString() + "\">";
     console.log(theHTML);
     return theHTML;
 }
@@ -58,7 +90,7 @@ function getAdvanceButton(state, toolId) {
         return buttonHTML("Accept", toolId) + "<br>" + buttonHTML("Decline", toolId);
     }
     else if( state == "On Loan" ) {
-        return buttonHTML("Returned", toolId);
+        return buttonHTML("Return tool", toolId);
     }
     else if( state == "Returned" ) {
         return buttonHTML("Accept return", toolId);
@@ -81,7 +113,6 @@ function makeLoanedToolsTable() {
 
 				for (var i = 0; i<toolinfo.length; i++) {
 				 	var thisTool = toolinfo[i];
-                    console.log(thisTool)
 					var row$=$('<tr/>');
 					for (var key in thisTool) {
 						if (key != 'idTool'){
@@ -117,7 +148,7 @@ function makeBorrowedToolsTable() {
 
 				for (var i = 0; i<toolinfo.length; i++) {
 				 	var thisTool = toolinfo[i];
-                    console.log(thisTool)
+                    //console.log(thisTool)
 					var row$=$('<tr/>');
 					for (var key in thisTool) {
 						if (key != 'idTool'){

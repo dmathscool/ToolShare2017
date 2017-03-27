@@ -20,7 +20,7 @@ $result=mysqli_query($conn,"SELECT ImgFileLoc,ToolName,ToolType,ToolBrand,ToolCo
 	FROM Tools
 	INNER JOIN ToolLoanState ON idToolLoanState=Toolstate
 	INNER JOIN RegUsers on RegUsers_OriginalUser = idRegisteredUsers
-	WHERE (RegUsers_CurrentUser = '$username')");
+	WHERE (RegUsers_CurrentUser = '$username') AND (ToolState != '4')");
 $numRows= $result->num_rows;
 $to_encode = array();
 while( $row = $result->fetch_assoc() ) {

@@ -62,3 +62,14 @@ function createTool() {
             })
     }
 }
+
+// attempting to do this as a call to PHP was proving to be a pain.
+// returning a value from the $.post call is tricky. don't feel like monkeying with it
+// for values that aren't likely to change anyway... I hope
+function loanStateNumber(stateAsText) {
+    if( stateAsText == "Available" ) return 1;
+    else if( stateAsText == "Loan Requested" ) return 2;
+    else if( stateAsText == "On Loan" ) return 3;
+    else if( stateAsText == "Returned" ) return 4;
+    else return -1;
+}

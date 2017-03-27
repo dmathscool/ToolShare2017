@@ -126,8 +126,14 @@ function makeLoanedToolsTable() {
 					//probably an a w f u l way to do this.
                     var thisToolId= thisTool['idTool'];
                     var thisToolState = thisTool['ToolLoanName'];
-                    row$.append($('<td/>').html(
-                        getAdvanceButton(thisToolState, thisToolId)));
+                    if( thisToolState == "Loan Requested" || thisToolState == "Returned" ) {
+                        row$.append($('<td/>').html(
+                            getAdvanceButton(thisToolState, thisToolId)));
+                    }
+                    else {
+                        row$.append($('<td/>'));
+                    }
+                    
 					$("#loanedTools").append(row$);
 				}
 			}
@@ -162,8 +168,14 @@ function makeBorrowedToolsTable() {
 					//probably an a w f u l way to do this.
                     var thisToolId= thisTool['idTool'];
                     var thisToolState = thisTool['ToolLoanName'];
-                    row$.append($('<td/>').html(
-                        getAdvanceButton(thisToolState, thisToolId)));
+                    if( thisToolState == "On Loan" ) {
+                        row$.append($('<td/>').html(
+                            getAdvanceButton(thisToolState, thisToolId)));
+                    }
+                    else {
+                        row$.append($('<td/>'));
+                    }
+                    
 					$("#borrowedTools").append(row$);
 				}
 			}

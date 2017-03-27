@@ -1,5 +1,5 @@
 function populateToolnameDropdown(addblankrow) {
-		$.post("../DatabaseRelated/gettoolname.php", 
+		$.post("../DatabaseRelated/gettoolname.php",
     	function(data) {
 			if (addblankrow != 0) {
 				    $(".filtertoolname").append('<option value=""></option>');
@@ -15,14 +15,14 @@ function populateToolnameDropdown(addblankrow) {
 			}
 			else {
 				console.log("problem looking up tool names");
-				// some error stuff here. 
+				// some error stuff here.
 			}
 		}
 	);
 }
 
 function populateTooltypeDropdown(addblankrow) {
-		$.post("../DatabaseRelated/gettooltype.php", 
+		$.post("../DatabaseRelated/gettooltype.php",
     	function(data) {
 			if (addblankrow != 0) {
 				    $(".filtertooltype").append('<option value=""></option>');
@@ -39,7 +39,7 @@ function populateTooltypeDropdown(addblankrow) {
 			}
 			else {
 				console.log("problem looking up tool types");
-				// some error stuff here. 
+				// some error stuff here.
 			}
 		}
 	);
@@ -47,7 +47,7 @@ function populateTooltypeDropdown(addblankrow) {
 }
 
 function populateBrandDropdown(addblankrow) {
-		$.post("../DatabaseRelated/gettoolbrand.php", 
+		$.post("../DatabaseRelated/gettoolbrand.php",
     	function(data) {
 			if (addblankrow != 0) {
 				    $(".filterbrand").append('<option value=""></option>');
@@ -63,14 +63,14 @@ function populateBrandDropdown(addblankrow) {
 			}
 			else {
 				console.log("problem looking up tool names");
-				// some error stuff here. 
+				// some error stuff here.
 			}
 		}
 	);
 }
 
 function populateConditionDropdown(addblankrow) {
-		$.post("../DatabaseRelated/gettoolcondition.php", 
+		$.post("../DatabaseRelated/gettoolcondition.php",
     	function(data) {
 			if (addblankrow != 0) {
 				    $(".filtercondition").append('<option value=""></option>');
@@ -87,15 +87,59 @@ function populateConditionDropdown(addblankrow) {
 			}
 			else {
 				console.log("problem looking up conditions");
-				// some error stuff here. 
+				// some error stuff here.
 			}
 		}
 	);
 
 }
+function popluateToolsTable(data) {
+	if( data != '' ) {
+		var toolinfo = JSON.parse(data);
 
+		for (var i = 0; i<toolinfo.length; i++) {
+			var thisTool = toolinfo[i];
+			var row$=$('<tr/>');
+			for (var key in thisTool) {
+				if (key != 'idTool'){
+					var thisVal=thisTool[key];
+					if (thisVal==null){thisVal=""};
+					row$.append($('<td/>').html(thisVal));
+				}
+				//this prints each entry as
+				//image file,tool name,tool type, tool brand, tool condition, tool status (int)
+			}
+			//probably an a w f u l way to do this.
+			var thistoolstate = thisTool['ToolLoanName'];
+			if (!allowBorrow) {
+				row$.append($('<td/>').html("Register to Borrow!"));
+			}
+			else if (thistoolstate == "Available"){
+
+				var thisToolId= thisTool['idTool'];
+				row$.append($('<td/>').html(
+					"<input onclick=\"borrowTool(this.id)\" type=\"submit\" value=\"Borrow\" id=\"" + thisToolId.toString() + "\">"));
+			} 
+			else {
+				row$.append($('<td/>').html(""));
+			}
+			$("#databaseTools").append(row$);
+		}
+		var lastrow$ =  "<tr> <td><!--img--></td><td></td><td><select class=\"filtertooltype\"  \
+			id=\"tooltype\"></select></td><td><select class=\"filterbrand\" id=\"toolbrand\"> \
+			</select></td><td><select class=\"filtercondition\" id=\"toolcondition\"></select></td><td></td> \
+            <td><input onclick=\"filterStuff()\" type=\"submit\" value=\"Filter Results\" id=\"submit\"></td> </tr>"
+		$("#databaseTools").append(lastrow$);
+		populateTooltypeDropdown(1); 
+		populateBrandDropdown(1); 
+		populateConditionDropdown(1);
+	}
+	else {
+		console.log("something went awry")
+	}
+
+}
 function filterStuff() {
-	// DMM - copied from buildtools.js - probably a better way
 	//query the db and rebuild the table
 	//TABLE BUILDING SUPER QUICK AND DIRTY....
 	if (loggedInAs() == ''){
@@ -104,40 +148,26 @@ function filterStuff() {
 		allowBorrow=true;
 	}
 	var condition = document.getElementById('toolcondition').value;
-	var name= document.getElementById('toolname').value;
 	var brand= document.getElementById('toolbrand').value;
 	var type= document.getElementById('tooltype').value;
+	var keyword = document.getElementById('searchkeyword').value;
 	$("#databaseTools tr").remove(); //Clear the table to rebuild
-	$.post("../DatabaseRelated/get_tools.php", {username:"", toolcondition:condition,toolname:name,tooltype:type,toolbrand:brand},
-    	function(data) {
-			if( data != '' ) {
-				var toolinfo = JSON.parse(data);
+	$.post("../DatabaseRelated/get_tools.php", {username:"", toolcondition:condition,toolname:"",tooltype:type,toolbrand:brand,searchkeyword:keyword},
+    	function(data) {popluateToolsTable(data);});
+}
+function searchKeyword() {
+	if (loggedInAs() == ''){
+		allowBorrow=false;
+	} else {
+		allowBorrow=true;
+	}
+	var condition = document.getElementById('toolcondition').value;
+	var brand= document.getElementById('toolbrand').value;
+	var type= document.getElementById('tooltype').value;
+	var keyword = document.getElementById('searchkeyword').value;
+	$("#databaseTools tr").remove(); //Clear the table to rebuild
+	$.post("../DatabaseRelated/get_tools.php", {username:"", toolcondition:condition,toolname:"",tooltype:type,toolbrand:brand,searchkeyword:keyword},
+    	function(data) {popluateToolsTable(data);});
 
-				for (var i = 0; i<toolinfo.length; i++) {
-					var thisTool = toolinfo[i];
-					var row$=$('<tr/>');
-					for (var key in thisTool) {
-						var thisVal=thisTool[key];
-						if (thisVal==null){thisVal=""};
-						row$.append($('<td/>').html(thisVal));
-						//this prints each entry as
-						//image file,tool name,tool type, tool brand, tool condition, tool status (int)
-					}
-					//probably an a w f u l way to do this.
-					if (allowBorrow){
-					row$.append($('<td/>').html(
-						"<input onclick=\"borrowTool()\" type=\"submit\" value=\"Borrow\" id=\"" + i.toString() + "\">"));
-					} else {
-						row$.append($('<td/>').html("Register to Borrow!"));
-					}
-					$("#databaseTools").append(row$);
-				}
-			}
-			else {
-				console.log("something went awry")
-			}
-		}
-	);
 
-    
 }

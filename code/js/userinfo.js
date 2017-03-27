@@ -34,7 +34,7 @@ function updateSomething(modifiedField) {
 
 	var username = document.getElementById('username').innerHTML;
     var newVal = document.getElementById(modifiedField+'field').value;
-    
+
     $.post("../DatabaseRelated/updateuserfield.php",
             {name:username,field:modifiedField,newval:newVal},
             function(data){

@@ -37,18 +37,52 @@ function changeState(state, id) {
     }
 }
 
+function kickToRatingPage(original, current) {
+    var $ratedUser;
+    if( original == loggedInAs() ) {
+        $ratedUser = current;
+    }
+    else if ( current == loggedInAs() ) {
+        $ratedUser = original;
+    }
+    else {
+        console.log("neither user involved with this tool is the one logged in. we shouldn't have even gotten here");
+    }
+
+    console.log("rating user "+$ratedUser);
+    window.location.replace("rateuser.html?name="+$ratedUser);
+}
+
+function rateOtherUser(toolId) {
+    $.post("../DatabaseRelated/gettoolusernames.php",
+            {toolid:toolId},
+            function(data){
+              if (data.startsWith("error")){
+                  console.log("failed to get tool info " + data);
+              }
+			  else {
+                  var toolinfo = JSON.parse(data);
+
+                  console.log(data);
+                  var $original = toolinfo[0]['origUser'];
+                  var $current = toolinfo[0]['currUser'];
+
+                  kickToRatingPage($original, $current);
+              }
+            });
+}
+
 // state parameter is state we want to transition to
 function advanceTransactionState(state, id) {
     console.log("advance tool " + id + " to state " + state);
 
     if( state == "Returned" ) {
         changeState("Returned", id);
-        // then ask user to rate the other user
+        rateOtherUser(id);
     }
     if( state == "Rate User" ) {
+        rateOtherUser(id);
         changeState("Available", id);
-        // then ask user to rate the other user
-        //window.location.href = "rateuser.html?name=" + ;
     }
     else {
         changeState(state, id);

@@ -8,6 +8,6 @@ $(document).ready(function(){
 		allowBorrow=true;
 	}
 
-	$.post("../DatabaseRelated/get_tools.php", {username:"",toolname:"",tooltype:"",toolcondition:"",toolbrand:"",searchkeyword:""},
+	$.post("../DatabaseRelated/get_tools.php", {username:loggedInAs(),toolname:"",tooltype:"",toolcondition:"",toolbrand:"",searchkeyword:""},
     	function(data) {popluateToolsTable(data);});
 });

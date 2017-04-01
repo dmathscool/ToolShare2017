@@ -20,7 +20,7 @@ function borrowTool(clicked_id) {
 }
 
 // function to edit a tool based on id
-// TODO - probably needs to happen in two parts 
+// TODO - probably needs to happen in two parts
 // First part gives user edit access to tool stuff
 // Second part commits the edit to database
 function editTool(clicked_id) {
@@ -32,7 +32,7 @@ function editTool(clicked_id) {
 		{toolid:clicked_id,toolname:toolName,toolcondition:toolCondition,toolbrand:toolBrand,tooltype:toolType},
 		function(data) {
 			 if (data == "SUCCESS"){
-				 window.location.reload();
+				 window.location.replace("transactions.html");
 			 } else {
 				 alert("Borrow Failed: " + data);
 		}})

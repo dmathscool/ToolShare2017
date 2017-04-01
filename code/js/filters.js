@@ -32,6 +32,7 @@ function populateTooltypeDropdown(addblankrow) {
 				var tooltypes = JSON.parse(data);
 
 				console.log(tooltypes);
+				$(".filtertooltype").empty();
 				for (var i = 0; i<tooltypes.length; i++) {
 					$(".filtertooltype").append("<option value='"+tooltypes[i]['ToolType']+"'>"+tooltypes[i]['ToolType']+"</option>");
 				}
@@ -80,6 +81,7 @@ function populateConditionDropdown(addblankrow) {
 				var toolconditions = JSON.parse(data);
 
 				console.log(toolconditions);
+				$(".filtercondition").empty();
 				for (var i = 0; i<toolconditions.length; i++) {
 					$(".filtercondition").append("<option value='"+toolconditions[i]['ToolCondition']+"'>"+toolconditions[i]['ToolCondition']+"</option>");
 				}
@@ -119,7 +121,7 @@ function popluateToolsTable(data) {
 				var thisToolId= thisTool['idTool'];
 				row$.append($('<td/>').html(
 					"<input onclick=\"borrowTool(this.id)\" type=\"submit\" value=\"Borrow\" id=\"" + thisToolId.toString() + "\">"));
-			} 
+			}
 			else {
 				row$.append($('<td/>').html(""));
 			}
@@ -130,8 +132,8 @@ function popluateToolsTable(data) {
 			</select></td><td><select class=\"filtercondition\" id=\"toolcondition\"></select></td><td></td> \
             <td><input onclick=\"filterStuff()\" type=\"submit\" value=\"Filter Results\" id=\"submit\"></td> </tr>"
 		$("#databaseTools").append(lastrow$);
-		populateTooltypeDropdown(1); 
-		populateBrandDropdown(1); 
+		populateTooltypeDropdown(1);
+		populateBrandDropdown(1);
 		populateConditionDropdown(1);
 	}
 	else {

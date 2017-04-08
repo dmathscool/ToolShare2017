@@ -9,7 +9,7 @@ if ($result) {
     echo "SUCCESS";
 }
 else {
-    echo "Error updating $field";
+    echo "Error deleting tool ".$result;
 }
 
 mysqli_close($conn);

@@ -24,11 +24,11 @@ function populateToolnameDropdown(addblankrow) {
 function populateTooltypeDropdown(addblankrow) {
 		$.post("../DatabaseRelated/gettooltype.php",
     	function(data) {
-			if (addblankrow != 0) {
-				    $(".filtertooltype").append('<option value=""></option>');
-			}
 			if( data != '' ) {
-				// TODO need to loop through all data here
+				$(".filtertooltype").empty();
+				if (addblankrow != 0) {
+					    $(".filtertooltype").append('<option value=""></option>');
+				}
 				var tooltypes = JSON.parse(data);
 
 				console.log(tooltypes);
@@ -72,14 +72,16 @@ function populateBrandDropdown(addblankrow) {
 function populateConditionDropdown(addblankrow) {
 		$.post("../DatabaseRelated/gettoolcondition.php",
     	function(data) {
-			if (addblankrow != 0) {
-				    $(".filtercondition").append('<option value=""></option>');
-			}
 			if( data != '' ) {
+				$(".filtercondition").empty();
+				if (addblankrow != 0) {
+					    $(".filtercondition").append('<option value=""></option>');
+				}
 				// TODO need to loop through all data here
 				var toolconditions = JSON.parse(data);
 
 				console.log(toolconditions);
+
 				for (var i = 0; i<toolconditions.length; i++) {
 					$(".filtercondition").append("<option value='"+toolconditions[i]['ToolCondition']+"'>"+toolconditions[i]['ToolCondition']+"</option>");
 				}
@@ -119,7 +121,7 @@ function popluateToolsTable(data) {
 				var thisToolId= thisTool['idTool'];
 				row$.append($('<td/>').html(
 					"<input onclick=\"borrowTool(this.id)\" type=\"submit\" value=\"Borrow\" id=\"" + thisToolId.toString() + "\">"));
-			} 
+			}
 			else {
 				row$.append($('<td/>').html(""));
 			}
@@ -130,12 +132,13 @@ function popluateToolsTable(data) {
 			</select></td><td><select class=\"filtercondition\" id=\"toolcondition\"></select></td><td></td> \
             <td><input onclick=\"filterStuff()\" type=\"submit\" value=\"Filter Results\" id=\"submit\"></td> </tr>"
 		$("#databaseTools").append(lastrow$);
-		populateTooltypeDropdown(1); 
-		populateBrandDropdown(1); 
+
+		populateTooltypeDropdown(1);
+		populateBrandDropdown(1);
 		populateConditionDropdown(1);
 	}
 	else {
-		console.log("something went awry")
+		console.log("something went awry");
 	}
 
 }
@@ -152,8 +155,13 @@ function filterStuff() {
 	var type= document.getElementById('tooltype').value;
 	var keyword = document.getElementById('searchkeyword').value;
 	$("#databaseTools tr").remove(); //Clear the table to rebuild
-	$.post("../DatabaseRelated/get_tools.php", {username:"", toolcondition:condition,toolname:"",tooltype:type,toolbrand:brand,searchkeyword:keyword},
-    	function(data) {popluateToolsTable(data);});
+	if (allowBorrow){
+		$.post("../DatabaseRelated/get_tools.php", {username:loggedInAs(), toolcondition:condition,toolname:"",tooltype:type,toolbrand:brand,searchkeyword:keyword},
+    		function(data) {popluateToolsTable(data);});
+	} else {
+		$.post("../DatabaseRelated/get_tools.php", {username:"", toolcondition:condition,toolname:"",tooltype:type,toolbrand:brand,searchkeyword:keyword},
+				function(data) {popluateToolsTable(data);});
+	}
 }
 function searchKeyword() {
 	if (loggedInAs() == ''){

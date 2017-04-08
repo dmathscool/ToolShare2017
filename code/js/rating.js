@@ -38,6 +38,7 @@ $("#submitrating").click(function(){
             function(data) {
                 if (data == "Successful Rating") {
                     $('#ratingresult').text("Successfully rated " + name);
+					window.location.replace("transactions.html");
                 } else if (data == "Duplicate User") {
                     $('#ratingresult').text("Error: User " + name + " is not unique. Please contact a site admin.");
                 } else if (data == "No User") {

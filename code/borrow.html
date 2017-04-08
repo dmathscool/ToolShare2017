@@ -63,16 +63,6 @@
   <tr> <td><!--img--></td><td>Tool name</td><td>Tool type</td><td>Brand</td><td>Condition</td><td>Status</td><td><!--button--></td> </tr>
 </table>
 
-  <div>
-    <b>Notes:</b><br>
-    Dropdown boxes are programmatically filled in. On page load, the tools data will be pulled from the database and the dropdowns<br>
-    populated with the relevant values. I don't think we need to get too fancy with our filtering here. Let the user pick one or zero items from each<br>
-    dropdown box and hit filter to restrict the available choices.<br>
-    <br>
-    Clicking a borrow button when not logged in issues a popup telling you to create an account or log in to borrow a tool.
-    Clicking a borrow button when logged in should mark the tool as unavailable (probably just by marking it as in the next step of the loanflow--
-        the borrow page should only show available tools) and regenerate the tool list and dropdown filters
-    </div>
 
   <script src="https://ajax.googleapis.com/ajax/libs/jquery/2.1.4/jquery.min.js"></script>
   <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0-alpha.2/js/bootstrap.min.js"

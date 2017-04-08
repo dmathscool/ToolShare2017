@@ -7,17 +7,19 @@ $toolCondition=$_POST['toolcondition'];
 $toolBrand=$_POST['toolbrand'];
 $toolType=$_POST['tooltype'];
 
-$result=mysqli_query($conn,"UPDATE tools SET ToolName = $toolName,
-                        ToolType = $tooltype,
-						ToolBrand = $toolBrand,
-						ToolCondition = $toolCondition,
+
+$result=mysqli_query($conn,"UPDATE tools SET ToolName = '$toolName',
+                        ToolType = '$toolType',
+						            ToolBrand = '$toolBrand',
+						            ToolCondition = '$toolCondition'
                         WHERE idTool = $toolId");
 
 if ($result) {
     echo "SUCCESS";
 }
 else {
-    echo "Error updating tool";
+
+    echo mysqli_error($conn);
 }
 
 mysqli_close($conn);

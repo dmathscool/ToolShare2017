@@ -15,21 +15,21 @@ $keyword=$_POST['searchkeyword'];
 $innerquery = "";
 if (!empty($keyword) && empty($name)) {
 	$innerquery = "(SELECT ImgFileLoc,ToolName,ToolType,ToolBrand,ToolCondition,ToolLoanName,idTool FROM Tools
-		INNER JOIN ToolLoanState on idToolLoanState = ToolState WHERE ToolName LIKE '%".$keyword . "%' 
+		INNER JOIN ToolLoanState on idToolLoanState = ToolState WHERE ToolName LIKE '%".$keyword . "%'
 		OR ToolBrand LIKE '%".$keyword."%' OR ToolType LIKE '%".$keyword."%') AS iq ";
 }
 else if (!empty($keyword) && !empty($name)){
-	$innerquery = "(SELECT ImgFileLoc,ToolName,ToolType,ToolBrand,ToolCondition,ToolLoanName,idTool FROM Tools
-		INNER JOIN ToolLoanState on idToolLoanState = ToolState 
+	$innerquery = "(SELECT ImgFileLoc,ToolName,ToolType,ToolBrand,ToolCondition,ToolLoanName,idTool,username FROM Tools
+		INNER JOIN ToolLoanState on idToolLoanState = ToolState
 		INNER JOIN RegUsers on RegUsers_OriginalUser = idRegisteredUsers
-		WHERE ToolName LIKE '%".$keyword . "%' 
+		WHERE ToolName LIKE '%".$keyword . "%'
 		OR ToolBrand LIKE '%".$keyword."%' OR ToolType LIKE '%".$keyword."%') AS iq ";
 }
 else if (empty($keyword) && empty($name)) {
 	$innerquery = "Tools INNER JOIN ToolLoanState on idToolLoanState = ToolState ";
 }
 else if (empty($keyword) && !empty($name)) {
-	$innerquery = "Tools INNER JOIN ToolLoanState on idToolLoanState = ToolState 
+	$innerquery = "Tools INNER JOIN ToolLoanState on idToolLoanState = ToolState
 		INNER JOIN RegUsers on RegUsers_OriginalUser = idRegisteredUsers ";
 }
 
@@ -64,9 +64,13 @@ else{
 if (empty($name)){
   $result=mysqli_query($conn,"SELECT ImgFileLoc,ToolName,ToolType,ToolBrand,ToolCondition,ToolLoanName,idTool
     FROM ".$innerquery.$whereclause);
-} else {
+}
+elseif (!empty($toolname) || !empty($tooltype) || !empty($toolcondition) || !empty($toolbrand)) {
+	$result=mysqli_query($conn,"SELECT ImgFileLoc,ToolName,ToolType,ToolBrand,ToolCondition,ToolLoanName,idTool
+		FROM ".$innerquery.$whereclause." AND username != '$name'");
+}else {
   $result=mysqli_query($conn,"SELECT ImgFileLoc,ToolName,ToolType,ToolBrand,ToolCondition,ToolLoanName,idTool
-    FROM ".$innerquery."WHERE username = '$name'");
+    FROM ".$innerquery."WHERE username != '$name'");
 
 }
 

@@ -86,6 +86,7 @@ function advanceTransactionState(state, id) {
     }
     else {
         changeState(state, id);
+		window.location.replace("transactions.html");//I want to refresh the window
     }
 }
 

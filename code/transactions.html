@@ -14,12 +14,6 @@
   <link href="https://fonts.googleapis.com/css?family=Raleway" rel="stylesheet" type="text/css">
   <script src="https://www.atlasestateagents.co.uk/javascript/tether.min.js"></script>
 
-  <script>
-  function ratedude() {
-    thisguy = $("#ratethisguy").val();
-    window.location.replace("rateuser.html?name="+thisguy);
-  }
-  </script>
 
   <link rel="stylesheet" href="pure/pure-min.css">
   <link rel="stylesheet" href="css/icono.min.css">
@@ -71,10 +65,7 @@
   <tr> <td><!--img--></td><td>Tool name</td><td>Tool type</td><td>Brand</td><td>Condition</td><td>Borrower</td><td>Contact info</td><td>Status</td><td><!--button--></td> </tr>
 </table>
 
-<label for="ratethisguy">Rate this user: </label>
-<input type="text" name="ratethisguy" id="ratethisguy">
-<!-- when deleting this, also delete ratedude() in head tag above -->
-<input type="button" value="<-- rate this guy" name="ratebutton" id="ratebutton" onclick="ratedude()"><br><br>
+<br><br>
 
 <table id="borrowedTools">
   <tr> <td class="tableheader" colspan=9>Tools you are borrowing</td> </tr>

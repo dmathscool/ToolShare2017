@@ -24,15 +24,14 @@ function populateToolnameDropdown(addblankrow) {
 function populateTooltypeDropdown(addblankrow) {
 		$.post("../DatabaseRelated/gettooltype.php",
     	function(data) {
-			if (addblankrow != 0) {
-				    $(".filtertooltype").append('<option value=""></option>');
-			}
 			if( data != '' ) {
-				// TODO need to loop through all data here
+				$(".filtertooltype").empty();
+				if (addblankrow != 0) {
+					    $(".filtertooltype").append('<option value=""></option>');
+				}
 				var tooltypes = JSON.parse(data);
 
 				console.log(tooltypes);
-				$(".filtertooltype").empty();
 				for (var i = 0; i<tooltypes.length; i++) {
 					$(".filtertooltype").append("<option value='"+tooltypes[i]['ToolType']+"'>"+tooltypes[i]['ToolType']+"</option>");
 				}
@@ -73,15 +72,16 @@ function populateBrandDropdown(addblankrow) {
 function populateConditionDropdown(addblankrow) {
 		$.post("../DatabaseRelated/gettoolcondition.php",
     	function(data) {
-			if (addblankrow != 0) {
-				    $(".filtercondition").append('<option value=""></option>');
-			}
 			if( data != '' ) {
+				$(".filtercondition").empty();
+				if (addblankrow != 0) {
+					    $(".filtercondition").append('<option value=""></option>');
+				}
 				// TODO need to loop through all data here
 				var toolconditions = JSON.parse(data);
 
 				console.log(toolconditions);
-				$(".filtercondition").empty();
+
 				for (var i = 0; i<toolconditions.length; i++) {
 					$(".filtercondition").append("<option value='"+toolconditions[i]['ToolCondition']+"'>"+toolconditions[i]['ToolCondition']+"</option>");
 				}
@@ -132,12 +132,13 @@ function popluateToolsTable(data) {
 			</select></td><td><select class=\"filtercondition\" id=\"toolcondition\"></select></td><td></td> \
             <td><input onclick=\"filterStuff()\" type=\"submit\" value=\"Filter Results\" id=\"submit\"></td> </tr>"
 		$("#databaseTools").append(lastrow$);
+
 		populateTooltypeDropdown(1);
 		populateBrandDropdown(1);
 		populateConditionDropdown(1);
 	}
 	else {
-		console.log("something went awry")
+		console.log("something went awry");
 	}
 
 }

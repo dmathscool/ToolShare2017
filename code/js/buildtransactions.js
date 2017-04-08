@@ -80,7 +80,7 @@ function advanceTransactionState(state, id) {
         changeState("Returned", id);
         rateOtherUser(id);
     }
-    if( state == "Rate User" ) {
+    else if( state == "Rate User" ) {
         rateOtherUser(id);
         changeState("Available", id);
     }

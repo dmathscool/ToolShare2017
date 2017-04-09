@@ -150,7 +150,11 @@ function makeLoanedToolsTable() {
 				 	var thisTool = toolinfo[i];
 					var row$=$('<tr/>');
 					for (var key in thisTool) {
-						if (key != 'idTool'){
+						if( key == 'ImgFileLoc' ) {
+                            var tooltype = thisTool['ToolType'].toLowerCase().replace(/\s/g, '');
+                            row$.append($('<td/>').html("<img class='tooltype' src='img/tooltype/" + tooltype + ".png'>"));
+                        }
+                        else if (key != 'idTool'){
 							var thisVal=thisTool[key];
 							if (thisVal==null){thisVal=""};
 							row$.append($('<td/>').html(thisVal));
@@ -192,7 +196,11 @@ function makeBorrowedToolsTable() {
                     //console.log(thisTool)
 					var row$=$('<tr/>');
 					for (var key in thisTool) {
-						if (key != 'idTool'){
+						if( key == 'ImgFileLoc' ) {
+                            var tooltype = thisTool['ToolType'].toLowerCase().replace(/\s/g, '');
+                            row$.append($('<td/>').html("<img class='tooltype' src='img/tooltype/" + tooltype + ".png'>"));
+                        }
+                        else if (key != 'idTool'){
 							var thisVal=thisTool[key];
 							if (thisVal==null){thisVal=""};
 							row$.append($('<td/>').html(thisVal));

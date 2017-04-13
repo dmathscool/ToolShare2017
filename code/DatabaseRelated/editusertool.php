@@ -8,7 +8,7 @@ $toolBrand=$_POST['toolbrand'];
 $toolType=$_POST['tooltype'];
 
 
-$result=mysqli_query($conn,"UPDATE tools SET ToolName = '$toolName',
+$result=mysqli_query($conn,"UPDATE Tools SET ToolName = '$toolName',
                         ToolType = '$toolType',
 						            ToolBrand = '$toolBrand',
 						            ToolCondition = '$toolCondition'

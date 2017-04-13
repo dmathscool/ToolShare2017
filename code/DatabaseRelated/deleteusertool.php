@@ -3,7 +3,7 @@ $conn=mysqli_connect("localhost","magic947_arthur","sweng987$$$","magic947_tools
 
 $toolId=$_POST['toolid'];
 
-$result=mysqli_query($conn,"DELETE from tools WHERE idTool = $toolId");
+$result=mysqli_query($conn,"DELETE from Tools WHERE idTool = $toolId");
 
 if ($result) {
     echo "SUCCESS";

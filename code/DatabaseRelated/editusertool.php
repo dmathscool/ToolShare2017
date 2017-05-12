@@ -1,5 +1,5 @@
 <?php
-$conn=mysqli_connect("localhost","magic947_arthur","sweng987$$$","magic947_toolshare");
+$conn=mysqli_connect("localhost","someuser","somepassword","somedatabase");
 
 $toolId=$_POST['toolid'];
 $toolName=$_POST['toolname'];

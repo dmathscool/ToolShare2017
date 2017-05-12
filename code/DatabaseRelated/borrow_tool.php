@@ -1,5 +1,5 @@
 <?php
-$conn=mysqli_connect("localhost","magic947_arthur","sweng987$$$","magic947_toolshare");
+$conn=mysqli_connect("localhost","someuser","somepassword","somedatabase");
 //assume we know the following:
 //borrowingUser (the user who is actively borrowing the tool)
 //the toolID (the tool we are borrowing)

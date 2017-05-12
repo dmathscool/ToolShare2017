@@ -3,7 +3,7 @@
 //otherwise we get the tools belogning to that specific user.
 //that way this php script should be able to do the following:
 //modifications may be made to this so that we can maybe get specific tools?
-$conn=mysqli_connect("localhost","magic947_arthur","sweng987$$$","magic947_toolshare");
+$conn=mysqli_connect("localhost","someuser","somepassword","somedatabase");
 
 $name=$_POST['username'];
 $toolname=$_POST['toolname'];

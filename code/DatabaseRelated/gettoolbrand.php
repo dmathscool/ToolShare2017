@@ -1,5 +1,5 @@
 <?php
-$conn=mysqli_connect("localhost","magic947_arthur","sweng987$$$","magic947_toolshare");
+$conn=mysqli_connect("localhost","someuser","somepassword","somedatabase");
 
 $result=mysqli_query($conn,"SELECT DISTINCT ToolBrand FROM Tools order by ToolBrand asc");
 $numRows= $result->num_rows;
